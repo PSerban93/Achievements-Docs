@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Customization | Achievements Docs</title>
+    <link rel="stylesheet" href="assets/style.css" />
+    <script defer src="assets/app.js"></script>
+  </head>
+  <body data-page="customization">
+    <div class="site-shell">
+      <aside class="sidebar">
+        <a class="brand" href="index.html">
+          <span class="brand-mark">A</span>
+          <span>
+            <strong>Achievements Docs</strong>
+            <small>Setup &amp; Configuration</small>
+          </span>
+        </a>
+        <nav class="nav" data-nav>
+          <a href="index.html" data-nav-id="home">Overview</a>
+          <a href="setup.html" data-nav-id="setup">Setup</a>
+          <a href="platforms.html" data-nav-id="platforms">Platforms</a>
+          <a href="customization.html" data-nav-id="customization"
+            >Customization</a
+          >
+          <a href="troubleshooting.html" data-nav-id="troubleshooting"
+            >Troubleshooting</a
+          >
+        </nav>
+      </aside>
+
+      <main class="content">
+        <section class="page-head">
+          <p class="eyebrow">Customization</p>
+          <h1>Dashboard, overlay, preferences, and runtime paths.</h1>
+          <p>
+            This page groups the user-facing controls that shape how the app
+            behaves after configuration is complete.
+          </p>
+        </section>
+
+        <section class="section">
+          <article class="panel">
+            <h2>Dashboard</h2>
+            <ul class="clean-list">
+              <li>Open the game grid with <strong>Show Dashboard</strong>.</li>
+              <li>Use search to filter games quickly.</li>
+              <li>Sort by name, progress, or last update time.</li>
+              <li>Click a game card to load its config.</li>
+              <li>
+                Use the play button for games with configured executables.
+              </li>
+              <li>
+                Background polling can auto-select the active game when its
+                process starts.
+              </li>
+              <li>
+                <code>Esc</code> or the close button restores the main UI and
+                input state.
+              </li>
+            </ul>
+            <div class="media-frame">
+              <a
+                class="media-link"
+                href="images/Dashboard.gif"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  src="images/Dashboard.gif"
+                  alt="Dashboard navigation and overview"
+                  loading="lazy"
+                />
+              </a>
+            </div>
+          </article>
+        </section>
+
+        <section class="section">
+          <article class="panel">
+            <h2>Customization</h2>
+            <ul class="clean-list">
+              <li>Choose notification preset and screen position.</li>
+              <li>Select notification sounds and language.</li>
+              <li>Adjust UI scale from 75% to 200%.</li>
+              <li>Adjust achievement duration and sound volume.</li>
+              <li>Toggle hidden descriptions when available.</li>
+              <li>Enable Close to Tray.</li>
+              <li>Configure overlay shortcut and interaction key.</li>
+              <li>
+                Enable or disable overlay controller support from
+                <strong>Settings → Advanced → Rendering</strong>.
+              </li>
+              <li>
+                Enable or disable achievement screenshots, progress
+                notifications, playtime notifications, and startup behavior.
+              </li>
+            </ul>
+            <div class="media-stack">
+              <div class="media-frame">
+                <a
+                  class="media-link"
+                  href="images/Settings - General.gif"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img
+                    src="images/Settings - General.gif"
+                    alt="General settings section"
+                    loading="lazy"
+                  />
+                </a>
+              </div>
+              <div class="media-frame">
+                <a
+                  class="media-link"
+                  href="images/Settings - Notification.gif"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img
+                    src="images/Settings - Notification.gif"
+                    alt="Notification settings section"
+                    loading="lazy"
+                  />
+                </a>
+              </div>
+              <div class="media-frame">
+                <a
+                  class="media-link"
+                  href="images/Settings - Advanced.gif"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img
+                    src="images/Settings - Advanced.gif"
+                    alt="Advanced settings section"
+                    loading="lazy"
+                  />
+                </a>
+              </div>
+            </div>
+          </article>
+        </section>
+
+        <section class="section">
+          <div class="section-head">
+            <h2>Runtime data locations</h2>
+          </div>
+          <div class="panel">
+            <ul class="clean-list mono-list">
+              <li>%APPDATA%\Achievements\configs</li>
+              <li>%APPDATA%\Achievements\configs\schema</li>
+              <li>%APPDATA%\Achievements\images</li>
+              <li>%APPDATA%\Achievements\ach_cache</li>
+              <li>%APPDATA%\Achievements\ach_cache_meta.json</li>
+              <li>%APPDATA%\Achievements\logs</li>
+              <li>%APPDATA%\Achievements\playtime-totals.json</li>
+              <li>%APPDATA%\Achievements\preferences.json</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-head">
+            <h2>Keyboard and controller highlights</h2>
+          </div>
+          <div class="panel">
+            <ul class="clean-list">
+              <li>
+                <a
+                  href="https://youtu.be/fsqoKiMGLkw"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Controller Support</a
+                >
+                includes a Dashboard introduction and controller navigation.
+              </li>
+              <li>
+                <a
+                  href="https://youtu.be/vDQ_4cNeIe8"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Multi-Platform Support V2 + Overlay Controller Support</a
+                >
+                also includes the overlay controller support flow.
+              </li>
+            </ul>
+          </div>
+          <div class="media-frame">
+            <a
+              class="media-link"
+              href="images/Settings - Shortcuts.gif"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                src="images/Settings - Shortcuts.gif"
+                alt="Shortcuts and controller settings"
+                loading="lazy"
+              />
+            </a>
+          </div>
+          <div class="card-grid">
+            <article class="card">
+              <h3>Global</h3>
+              <p>
+                Settings: <code>F1</code> / <code>Ctrl+O</code>. Dashboard:
+                <code>F2</code> / <code>Ctrl+D</code>. Play:
+                <code>P</code> / <code>Ctrl+Enter</code>.
+              </p>
+            </article>
+            <article class="card">
+              <h3>Overlay</h3>
+              <p>
+                Toggle visibility with the configured overlay shortcut. Toggle
+                interaction mode with the configured interact key.
+              </p>
+            </article>
+            <article class="card">
+              <h3>Overlay controller mode</h3>
+              <p>
+                Xbox: <code>View + Menu</code> toggles overlay, hold
+                <code>LB + RB</code> for control mode. PlayStation uses
+                <code>Share + Options</code> and <code>L1 + R1</code>.
+              </p>
+            </article>
+            <article class="card">
+              <h3>Main screen</h3>
+              <p>
+                Create New Config with <code>Ctrl+N</code>. Toggle options with
+                <code>F3</code>. Navigate with arrow keys or controller D-pad.
+              </p>
+            </article>
+          </div>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

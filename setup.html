@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Setup | Achievements Docs</title>
+    <link rel="stylesheet" href="assets/style.css" />
+    <script defer src="assets/app.js"></script>
+  </head>
+  <body data-page="setup">
+    <div class="site-shell">
+      <aside class="sidebar">
+        <a class="brand" href="index.html">
+          <span class="brand-mark">A</span>
+          <span>
+            <strong>Achievements Docs</strong>
+            <small>Setup &amp; Configuration</small>
+          </span>
+        </a>
+        <nav class="nav" data-nav>
+          <a href="index.html" data-nav-id="home">Overview</a>
+          <a href="setup.html" data-nav-id="setup">Setup</a>
+          <a href="platforms.html" data-nav-id="platforms">Platforms</a>
+          <a href="customization.html" data-nav-id="customization"
+            >Customization</a
+          >
+          <a href="troubleshooting.html" data-nav-id="troubleshooting"
+            >Troubleshooting</a
+          >
+        </nav>
+      </aside>
+
+      <main class="content">
+        <section class="page-head">
+          <p class="eyebrow">Setup</p>
+          <h1>First-run flow, manual setup, and auto configuration.</h1>
+          <p>
+            This page reorganizes the main onboarding and configuration steps
+            into a shorter flow users can follow without reading the full
+            project README.
+          </p>
+        </section>
+
+        <section class="section">
+          <div class="section-head">
+            <h2>Video walkthroughs</h2>
+            <p>Use these when the written steps are not enough.</p>
+          </div>
+          <div class="panel">
+            <ul class="clean-list">
+              <li>
+                <a
+                  href="https://youtu.be/c1jDfynHd-U"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >First Run</a
+                >
+                covers the first boot flow and initial setup.
+              </li>
+              <li>
+                <a
+                  href="https://youtu.be/fsqoKiMGLkw"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Controller Support</a
+                >
+                includes a Dashboard introduction and controller navigation.
+              </li>
+              <li>
+                <a
+                  href="https://youtu.be/abdVuDB80Ow"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Manual Config</a
+                >
+                shows the manual configuration flow.
+              </li>
+              <li>
+                <a
+                  href="https://youtu.be/nOoiU5lPopM"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Auto Config</a
+                >
+                shows watched folders, detection, and automatic config
+                generation.
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-head">
+            <h2>Quick start</h2>
+          </div>
+          <ol class="steps">
+            <li>Open <strong>Settings</strong> and choose a preset and scale.</li>
+            <li>
+              Add <strong>Watched Folders</strong> so the app can discover save
+              or emulator folders.
+            </li>
+            <li>
+              Start the game once so its save folder or local achievement files
+              exist.
+            </li>
+            <li>
+              Let the watcher auto-create a config when possible, or create the
+              config manually.
+            </li>
+            <li>
+              Select the config and choose the language to view achievements,
+              progress, and playtime.
+            </li>
+            <li>
+              Optionally mute progress notifications for the active config.
+            </li>
+          </ol>
+          <div class="media-frame">
+            <a
+              class="media-link"
+              href="images/Settings - Folders.gif"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                src="images/Settings - Folders.gif"
+                alt="Watched folders setup in Settings"
+                loading="lazy"
+              />
+            </a>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-head">
+            <h2>First-run onboarding</h2>
+          </div>
+          <div class="panel">
+            <ul class="clean-list">
+              <li>
+                On first run, startup can pause and show a folder selection
+                modal before full auto-scan begins.
+              </li>
+              <li>
+                The app searches for known achievement signals such as
+                <code>achievements.json</code>, <code>achievements.ini</code>,
+                <code>stats.bin</code>, trophy files, and emulator progress
+                files.
+              </li>
+              <li>
+                <strong>Start Auto-Config</strong> keeps selected folders active
+                and mutes unchecked discovered folders.
+              </li>
+              <li>
+                <strong>Skip and mute all</strong> continues startup immediately
+                and mutes the discovered or default auto-config roots.
+              </li>
+              <li>
+                Onboarding state is stored in
+                <code>%APPDATA%\Achievements\preferences.json</code>.
+              </li>
+              <li>
+                If startup is still gated but the modal is hidden, use tray
+                action <strong>Resume Startup (Mute all)</strong>.
+              </li>
+            </ul>
+            <div class="media-frame">
+              <a
+                class="media-link"
+                href="images/First boot.gif"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  src="images/First boot.gif"
+                  alt="First boot onboarding flow"
+                  loading="lazy"
+                />
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <section class="section split">
+          <article class="panel">
+            <h2>Manual configuration</h2>
+            <p>Create a config with the following fields:</p>
+            <ul class="clean-list">
+              <li><strong>Name</strong>: your preferred identifier.</li>
+              <li>
+                <strong>AppID</strong>: Steam AppID or folder identifier used
+                for the game.
+              </li>
+              <li>
+                <strong>Config Path</strong>: folder containing
+                <code>achievements.json</code> and <code>img/</code>, or leave
+                empty to generate it.
+              </li>
+              <li>
+                <strong>Save Path</strong>: location of progress or save data.
+              </li>
+              <li>
+                <strong>Executable</strong> and <strong>Arguments</strong>:
+                optional launch settings.
+              </li>
+              <li>
+                <strong>Process Name</strong>: optional explicit process name to
+                monitor.
+              </li>
+            </ul>
+            <p class="note">
+              Names are sanitized before saving, and that sanitized value is
+              used on disk and for playtime totals.
+            </p>
+            <div class="media-frame">
+              <a
+                class="media-link"
+                href="images/Manual-Config.gif"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  src="images/Manual-Config.gif"
+                  alt="Manual config creation flow"
+                  loading="lazy"
+                />
+              </a>
+            </div>
+          </article>
+
+          <article class="panel">
+            <h2>Config JSON reference</h2>
+            <ul class="clean-list">
+              <li><code>appid</code> – game id.</li>
+              <li>
+                <code>platform</code> – one of steam, uplay, gog, epic, xenia,
+                rpcs3, shadps4, steam-official, gog-official,
+                ubisoft-official, ea-official.
+              </li>
+              <li>
+                <code>config_path</code> – folder that contains
+                <code>achievements.json</code> and image assets.
+              </li>
+              <li>
+                <code>save_path</code> – folder with local progress or save
+                data.
+              </li>
+              <li>
+                <code>process_name</code> – executable name used for process
+                tracking.
+              </li>
+              <li>
+                <code>executable</code> / <code>arguments</code> – optional
+                launch metadata.
+              </li>
+            </ul>
+            <p class="note">
+              If <code>config_path</code> points to a custom location, schema
+              regeneration and cleanup will not overwrite that folder.
+            </p>
+          </article>
+        </section>
+
+        <section class="section">
+          <div class="section-head">
+            <h2>Auto configuration</h2>
+            <p>
+              Auto-config works best when the app can scan watched folders
+              regularly.
+            </p>
+          </div>
+          <div class="panel">
+            <ol class="steps">
+              <li>
+                Add one or more <strong>Watched Folders</strong> that contain
+                emulator data, save folders, or launcher caches.
+              </li>
+              <li>The app detects app ids and resolves the platform.</li>
+              <li>
+                It fetches the game name, schema, achievement data, and images
+                when sources are available.
+              </li>
+              <li>It generates configs automatically.</li>
+            </ol>
+            <div class="media-frame">
+              <a
+                class="media-link"
+                href="images/Auto-Detection.gif"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  src="images/Auto-Detection.gif"
+                  alt="Automatic detection and config generation"
+                  loading="lazy"
+                />
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-head">
+            <h2>Default watched folders</h2>
+          </div>
+          <div class="panel">
+            <ul class="compact-columns">
+              <li>%PUBLIC%\Documents\Steam\CODEX</li>
+              <li>%PUBLIC%\Documents\Steam\RUNE</li>
+              <li>%PUBLIC%\Documents\OnlineFix</li>
+              <li>%PUBLIC%\Documents\EMPRESS</li>
+              <li>%APPDATA%\Goldberg SteamEmu Saves</li>
+              <li>%APPDATA%\Goldberg UplayEmu Saves</li>
+              <li>%APPDATA%\GSE Saves</li>
+              <li>%APPDATA%\EMPRESS</li>
+              <li>%LOCALAPPDATA%\anadius\LSX emu\achievement_watcher</li>
+              <li>%APPDATA%\Steam\CODEX</li>
+              <li>%APPDATA%\SmartSteamEmu</li>
+              <li>%LOCALAPPDATA%\SKIDROW</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-head">
+            <h2>Steam API key behavior</h2>
+          </div>
+          <div class="panel">
+            <p>
+              Auto-configuration prefers the Steam Web API when a key is stored
+              in Settings.
+            </p>
+            <ul class="clean-list">
+              <li>
+                With a key: the app uses Steam Web API for schema and metadata
+                when possible.
+              </li>
+              <li>
+                Without a key: it falls back to SteamDB, SteamHunters, and
+                Exophase for language enrichment when available.
+              </li>
+              <li>
+                Sources used when available include Steam Web API, SteamDB,
+                SteamHunters, Exophase, GOG, and Epic.
+              </li>
+            </ul>
+          </div>
+        </section>
+
+      </main>
+    </div>
+  </body>
+</html>

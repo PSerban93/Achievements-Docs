@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Troubleshooting | Achievements Docs</title>
+    <link rel="stylesheet" href="assets/style.css" />
+    <script defer src="assets/app.js"></script>
+  </head>
+  <body data-page="troubleshooting">
+    <div class="site-shell">
+      <aside class="sidebar">
+        <a class="brand" href="index.html">
+          <span class="brand-mark">A</span>
+          <span>
+            <strong>Achievements Docs</strong>
+            <small>Setup &amp; Configuration</small>
+          </span>
+        </a>
+        <nav class="nav" data-nav>
+          <a href="index.html" data-nav-id="home">Overview</a>
+          <a href="setup.html" data-nav-id="setup">Setup</a>
+          <a href="platforms.html" data-nav-id="platforms">Platforms</a>
+          <a href="customization.html" data-nav-id="customization"
+            >Customization</a
+          >
+          <a href="troubleshooting.html" data-nav-id="troubleshooting"
+            >Troubleshooting</a
+          >
+        </nav>
+      </aside>
+
+      <main class="content">
+        <section class="page-head">
+          <p class="eyebrow">Troubleshooting</p>
+          <h1>Compatibility notes, limitations, and practical workarounds.</h1>
+          <p>
+            Use this page for overlay, notification, and compatibility issues.
+          </p>
+        </section>
+
+        <section class="section split">
+          <article class="panel">
+            <h2>Game compatibility</h2>
+            <ul class="clean-list">
+              <li>
+                Works best with games running in
+                <strong>Borderless Windowed</strong> mode.
+              </li>
+              <li>
+                DirectX 9, 10, and 11 games usually need borderless mode for
+                notifications to appear above the game window.
+              </li>
+              <li>
+                Fullscreen support is limited but often better in DirectX 12
+                titles.
+              </li>
+              <li>
+                The app can import existing achievements automatically when
+                local progress files are supported.
+              </li>
+            </ul>
+          </article>
+
+          <article class="panel">
+            <h2>Known limitations</h2>
+            <ul class="clean-list">
+              <li>
+                Match privilege level between app and game
+                (<code>admin/admin</code> or <code>non-admin/non-admin</code>)
+                for more reliable overlay behavior.
+              </li>
+              <li>
+                If overlay shortcuts fail in a game, switch to a 3-key combo
+                and test the <code>Ctrl+PageUp</code> /
+                <code>Ctrl+PageDown</code> fallback.
+              </li>
+              <li>
+                Overlay drag can fail in elevated or protected game contexts; in
+                those cases use snap positions or fine nudge shortcuts instead.
+              </li>
+              <li>
+                Native PlayStation controller support for the overlay depends on
+                Microsoft GameInput. Without it, only XInput-compatible
+                controllers are available.
+              </li>
+              <li>
+                Overlay z-order can vary depending on Windows, GPU driver, and
+                composition mode.
+              </li>
+            </ul>
+          </article>
+        </section>
+
+        <section class="section">
+          <div class="section-head">
+            <h2>Common workarounds</h2>
+          </div>
+          <div class="panel">
+            <ul class="clean-list">
+              <li>
+                Toggle <strong>Disable Hardware Acceleration</strong> and keep
+                the mode that is most stable for the user's setup.
+              </li>
+              <li>
+                If the overlay shortcut works but nothing is visible, try
+                turning hardware acceleration back on and restart the app.
+              </li>
+              <li>
+                If Special K or another injector is active, enable
+                <strong>Force globalShortcut for overlay</strong>.
+              </li>
+              <li>
+                Reduce long notification durations if users report delayed
+                unlock display.
+              </li>
+              <li>
+                Use lighter presets if backdrop blur or layered animation causes
+                stutter.
+              </li>
+              <li>
+                Avoid running multiple overlay or injector tools while
+                troubleshooting.
+              </li>
+            </ul>
+          </div>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Platforms | Achievements Docs</title>
+    <link rel="stylesheet" href="assets/style.css" />
+    <script defer src="assets/app.js"></script>
+  </head>
+  <body data-page="platforms">
+    <div class="site-shell">
+      <aside class="sidebar">
+        <a class="brand" href="index.html">
+          <span class="brand-mark">A</span>
+          <span>
+            <strong>Achievements Docs</strong>
+            <small>Setup &amp; Configuration</small>
+          </span>
+        </a>
+        <nav class="nav" data-nav>
+          <a href="index.html" data-nav-id="home">Overview</a>
+          <a href="setup.html" data-nav-id="setup">Setup</a>
+          <a href="platforms.html" data-nav-id="platforms">Platforms</a>
+          <a href="customization.html" data-nav-id="customization"
+            >Customization</a
+          >
+          <a href="troubleshooting.html" data-nav-id="troubleshooting"
+            >Troubleshooting</a
+          >
+        </nav>
+      </aside>
+
+      <main class="content">
+        <section class="page-head">
+          <p class="eyebrow">Platforms</p>
+          <h1>Platform and emulator setup guides.</h1>
+          <p>
+            Use the relevant section below depending on how the game stores
+            achievements locally.
+          </p>
+        </section>
+
+        <section class="section">
+          <div class="section-head">
+            <h2>Detailed platform videos</h2>
+            <p>These videos group multiple platform flows in one place.</p>
+          </div>
+          <div class="panel">
+            <ul class="clean-list">
+              <li>
+                <a
+                  href="https://youtu.be/KwRUo53VTho"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Multi-Platform Support</a
+                >
+                covers Steam Official, Xenia, RPCS3, and ShadPS4.
+              </li>
+              <li>
+                <a
+                  href="https://youtu.be/vDQ_4cNeIe8"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Multi-Platform Support V2 + Overlay Controller Support</a
+                >
+                covers GOG Galaxy, Ubisoft Connect, EA Desktop, and overlay
+                controller support.
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="media-frame">
+            <a
+              class="media-link"
+              href="images/Settings - Platform Guide.gif"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                src="images/Settings - Platform Guide.gif"
+                alt="Platform guide section in Settings"
+                loading="lazy"
+              />
+            </a>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-head">
+            <h2>Platforms</h2>
+            <p>Official launcher integrations and native client flows.</p>
+          </div>
+          <div class="card-grid">
+            <a class="card card-link" href="#steam-official">
+              <h3>Steam Official</h3>
+              <p>Local stats files, schema resolution, and unlock tracking.</p>
+              <span class="card-cta">Jump to section</span>
+            </a>
+            <a class="card card-link" href="#epic-games">
+              <h3>Epic Games</h3>
+              <p>Library import, manifests, and official achievement polling.</p>
+              <span class="card-cta">Jump to section</span>
+            </a>
+            <a class="card card-link" href="#gog-galaxy">
+              <h3>GOG Galaxy</h3>
+              <p>Gameplay database parsing and auto-generated official configs.</p>
+              <span class="card-cta">Jump to section</span>
+            </a>
+            <a class="card card-link" href="#ubisoft-connect">
+              <h3>Ubisoft Connect</h3>
+              <p>Spool and log-based official integrations.</p>
+              <span class="card-cta">Jump to section</span>
+            </a>
+            <a class="card card-link" href="#ea-desktop">
+              <h3>EA Desktop</h3>
+              <p>Log-driven schema generation and official config monitoring.</p>
+              <span class="card-cta">Jump to section</span>
+            </a>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-head">
+            <h2>Emulators and Helpers</h2>
+          </div>
+          <div class="subsection-head">
+            <h3>Emulators</h3>
+            <p>Goldberg, Uplay, GOG, Epic, and EA helper-based generation methods.</p>
+          </div>
+          <div class="card-grid">
+            <a class="card card-link" href="#gse">
+              <h3>GSE</h3>
+              <p>Generate Goldberg Steam Emulator configs with Steam account data.</p>
+              <span class="card-cta">Jump to section</span>
+            </a>
+            <a class="card card-link" href="#gse-roschach96">
+              <h3>GSE Roschach96</h3>
+              <p>Semi-auto ColdClient flow from the game folder.</p>
+              <span class="card-cta">Jump to section</span>
+            </a>
+            <a class="card card-link" href="#uplay-goldberg">
+              <h3>Uplay Goldberg</h3>
+              <p>Steam AppID based schema generation for Ubisoft games.</p>
+              <span class="card-cta">Jump to section</span>
+            </a>
+            <a class="card card-link" href="#uplay-roschach96">
+              <h3>Uplay Roschach96</h3>
+              <p>Semi-auto Goldberg Uplay flow through the bundled batch setup.</p>
+              <span class="card-cta">Jump to section</span>
+            </a>
+            <a class="card card-link" href="#uplay-lumaplay">
+              <h3>Uplay Lumaplay</h3>
+              <p>Registry-driven Uplay emulation with local achievement reports.</p>
+              <span class="card-cta">Jump to section</span>
+            </a>
+            <a class="card card-link" href="#gog-universelan">
+              <h3>GOG UniverseLAN</h3>
+              <p>Galaxy DLL replacement with local Achievements.ini output.</p>
+              <span class="card-cta">Jump to section</span>
+            </a>
+            <a class="card card-link" href="#nemirtingas-epic-emu">
+              <h3>NemirtingasEpicEmu</h3>
+              <p>Namespace-based Epic achievement generation and local settings.</p>
+              <span class="card-cta">Jump to section</span>
+            </a>
+            <a class="card card-link" href="#anadius-origin-ea-emu">
+              <h3>anadius Origin/EA Emu</h3>
+              <p>Origin Helper based config generation for EA/Origin titles.</p>
+              <span class="card-cta">Jump to section</span>
+            </a>
+          </div>
+          <div class="subsection-head">
+            <h3>Console Emulators</h3>
+            <p>Xenia, RPCS3, and ShadPS4 native emulator flows.</p>
+          </div>
+          <div class="card-grid">
+            <a class="card card-link" href="#xenia-canary">
+              <h3>Xenia-Canary</h3>
+              <p>User profile, Content path, auto-generated config.</p>
+              <span class="card-cta">Jump to section</span>
+            </a>
+            <a class="card card-link" href="#rpcs3">
+              <h3>RPCS3</h3>
+              <p>Trophy path, local progress, schema generation.</p>
+              <span class="card-cta">Jump to section</span>
+            </a>
+            <a class="card card-link" href="#shadps4">
+              <h3>ShadPS4</h3>
+              <p>Modern and legacy trophy layouts, user-scoped caches.</p>
+              <span class="card-cta">Jump to section</span>
+            </a>
+          </div>
+        </section>
+
+        <section class="section anchor-target" id="steam-official">
+          <div class="section-head">
+            <h2>Platforms</h2>
+            <p>Official launcher integrations and native client flows.</p>
+          </div>
+          <div class="panel">
+            <h2>Steam Official support</h2>
+            <ol class="steps">
+              <li>
+                Add
+                <code>C:\Program Files (x86)\Steam\appcache\stats</code> to
+                <strong>Watched Folders</strong>.
+              </li>
+              <li>Start and play the game through Steam.</li>
+              <li>
+                The app reads Steam's local stats files, resolves the schema and
+                images, generates configs automatically, and tracks unlocks.
+              </li>
+            </ol>
+          </div>
+        </section>
+
+        <section class="section anchor-target" id="epic-games">
+          <div class="panel">
+            <h2>Epic Games launcher support</h2>
+            <ol class="steps">
+              <li>
+                Connect an Epic account in <strong>Settings</strong> and use
+                <strong>Import Library</strong>.
+              </li>
+              <li>
+                Owned titles with achievements are imported automatically as
+                <code>epic-official</code> configs.
+              </li>
+              <li>
+                Local manifests are used to resolve install path, executable,
+                and process name.
+              </li>
+              <li>
+                Polling runs only for the detected running Epic game or the
+                selected Epic Official config.
+              </li>
+            </ol>
+            <p class="note">
+              Store images are resolved through Epic metadata first and fall
+              back to SteamGridDB only when needed.
+            </p>
+          </div>
+        </section>
+
+        <section class="section anchor-target" id="gog-galaxy">
+          <div class="panel">
+            <h2>GOG Galaxy launcher support</h2>
+            <ol class="steps">
+              <li>Install and sign in to GOG Galaxy.</li>
+              <li>
+                Add
+                <code>%LOCALAPPDATA%\GOG.com\Galaxy\Applications</code> to
+                <strong>Watched Folders</strong>.
+              </li>
+              <li>Start and play the game via GOG Galaxy at least once.</li>
+              <li>
+                The app resolves local client id to product id mapping, watches
+                <code>gameplay.db</code>, generates a
+                <code>gog-official</code> config, builds
+                <code>achievements.json</code> and
+                <code>achievementpercentages.json</code>, and then monitors
+                later changes.
+              </li>
+            </ol>
+            <h3>Important notes</h3>
+            <ul class="clean-list">
+              <li>
+                <code>gog-official</code> is auto-generated and not meant to be
+                created manually.
+              </li>
+              <li>
+                The config is created only after <code>gameplay.db</code> exists
+                and the achievement table is populated and stable.
+              </li>
+              <li>
+                Runtime progress is read from <code>gameplay.db</code> even
+                though the saved config points to the concrete gameplay folder.
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="section anchor-target" id="ubisoft-connect">
+          <div class="panel">
+            <h2>Ubisoft Connect launcher support</h2>
+            <ol class="steps">
+              <li>Install and sign in to Ubisoft Connect.</li>
+              <li>
+                Add
+                <code>%LOCALAPPDATA%\Ubisoft Game Launcher\spool</code>
+                manually to <strong>Watched Folders</strong>.
+              </li>
+              <li>
+                Start and play the game at least once so the local spool or
+                cache files exist.
+              </li>
+              <li>
+                The app generates local schema, rarity sidecar, images, and a
+                <code>ubisoft-official</code> config automatically.
+              </li>
+            </ol>
+          </div>
+        </section>
+
+        <section class="section anchor-target" id="ea-desktop">
+          <div class="panel">
+            <h2>EA Desktop launcher support</h2>
+            <ol class="steps">
+              <li>Install and sign in to EA Desktop.</li>
+              <li>
+                Add
+                <code>%LOCALAPPDATA%\Electronic Arts\EA Desktop\Logs</code>
+                manually to <strong>Watched Folders</strong>.
+              </li>
+              <li>
+                Start and play the game at least once so
+                <code>EADesktopVerbose.log</code> contains the achievement set.
+              </li>
+              <li>
+                The app generates local schema and images, creates an
+                <code>ea-official</code> config, and monitors later log
+                changes.
+              </li>
+            </ol>
+          </div>
+        </section>
+
+        <section class="section anchor-target" id="gse">
+          <div class="section-head">
+            <h2>Emulators</h2>
+            <p>Goldberg, Uplay, GOG, Epic, and EA helper-based generation methods.</p>
+          </div>
+          <div class="panel">
+            <h2>GSE</h2>
+            <ol class="steps">
+              <li>
+                Download and extract
+                <code>@alex47exe generate_emu_config</code>.
+              </li>
+              <li>
+                Create <code>my_login.txt</code> in that folder and save your
+                Steam account as:
+                <pre><code>username
+password</code></pre>
+              </li>
+              <li>
+                Run <code>generate_emu_config.exe_user.exe</code> and enter the
+                target Steam AppID.
+              </li>
+              <li>
+                If the account uses 2FA, complete the code prompt when asked.
+              </li>
+              <li>
+                Rename the game's original
+                <code>steam_api64.dll</code> to
+                <code>steam_api64.dll.bak</code>.
+              </li>
+              <li>
+                Copy everything from <code>_OUTPUT\appid</code> next to the
+                renamed DLL.
+              </li>
+              <li>
+                Run <code>gse_generate_interfaces.exe</code> once, then launch
+                the game.
+              </li>
+              <li>
+                In Achievements, <code>%APPDATA%\GSE Saves</code> is a default
+                watched folder, so the AppID can be detected and the config can
+                be generated automatically.
+              </li>
+            </ol>
+            <div class="media-frame">
+              <a
+                class="media-link"
+                href="images/GSE.gif"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  src="images/GSE.gif"
+                  alt="GSE config generation flow"
+                  loading="lazy"
+                />
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <section class="section anchor-target" id="gse-roschach96">
+          <div class="panel">
+            <h2>GSE Roschach96 method</h2>
+            <ol class="steps">
+              <li>
+                Download Roschach96's <code>ColdClient semi-auto from Game Folder</code>
+                release and copy it into the game's main folder. Use clean Steam files.
+              </li>
+              <li>
+                Extract in place and run
+                <code>_goldberg_auto_setup_from_game_folder_vXX.bat</code>.
+              </li>
+              <li>
+                Enter the Steam AppID and let the script finish the setup.
+              </li>
+              <li>
+                When the script reports <code>DONE</code>, Achievements should
+                detect the generated config using the searched game name.
+              </li>
+            </ol>
+            <p class="note">
+              This method stores the generated Achievements schema outside the
+              app's default schema location.
+            </p>
+            <div class="media-frame">
+              <a
+                class="media-link"
+                href="images/GSE_Roschach96.gif"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  src="images/GSE_Roschach96.gif"
+                  alt="GSE Roschach96 method"
+                  loading="lazy"
+                />
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <section class="section anchor-target" id="uplay-goldberg">
+          <div class="panel">
+            <h2>Uplay Goldberg method</h2>
+            <ol class="steps">
+              <li>
+                Download Roschach96's
+                <code>GSE Uplay R2 semi-auto AW Joker combined</code> package.
+              </li>
+              <li>
+                Place <code>generate_achievements_schema_vX.ps1</code> next to
+                the <code>@alex47exe generate_emu_config</code> folder.
+              </li>
+              <li>
+                Generate the base files with <code>generate_emu_config</code>
+                using the Steam AppID of the Ubisoft title.
+              </li>
+              <li>
+                Open a command prompt in the PowerShell script folder and run:
+                <pre><code>.\generate_achievements_schema_vX.ps1 steamAppid</code></pre>
+              </li>
+              <li>
+                This produces <code>achievements_schema.json</code> for the
+                Uplay game.
+              </li>
+              <li>
+                Copy Goldberg Uplay R2 files and
+                <code>achievements_schema.json</code> into the game folder and
+                replace the original Uplay DLLs.
+              </li>
+              <li>
+                Start the game. Achievements can auto-detect it from the default
+                watched folder <code>%APPDATA%\Goldberg UplayEmu Saves</code>.
+              </li>
+            </ol>
+            <p class="note">
+              Video demo:
+              <a
+                href="https://www.youtube.com/watch?v=9CuoX1HCAOU"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Ubisoft Games with Achievements</a
+              >
+            </p>
+            <div class="media-frame">
+              <a
+                class="media-link"
+                href="images/Uplay.gif"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  src="images/Uplay.gif"
+                  alt="Uplay Goldberg method"
+                  loading="lazy"
+                />
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <section class="section anchor-target" id="uplay-roschach96">
+          <div class="panel">
+            <h2>Uplay Roschach96 method</h2>
+            <ol class="steps">
+              <li>
+                Download Roschach96's
+                <code>GSE Uplay R2 semi-auto AW Joker combined</code>.
+              </li>
+              <li>
+                Run
+                <code>_goldberg_uplay_r2_semi-auto_setup_aw_joker_combined_V6.bat</code>.
+              </li>
+              <li>Follow the prompts to complete the setup.</li>
+            </ol>
+          </div>
+        </section>
+
+        <section class="section anchor-target" id="uplay-lumaplay">
+          <div class="panel">
+            <h2>Uplay Lumaplay</h2>
+            <h3>x86 installation</h3>
+            <ol class="steps">
+              <li>
+                Copy <code>LumaPlay_x86.exe</code> and the
+                <code>LumaPlayFiles</code> folder into the game folder.
+              </li>
+              <li>
+                Copy the original <code>uplay_r1.dll</code> from
+                <code>C:\Program Files (x86)\Ubisoft\Ubisoft Game Launcher</code>
+                into <code>LumaPlayFiles</code> and rename it to
+                <code>UbiAPI.dll</code>.
+              </li>
+              <li>Update the executable name and other settings in <code>LumaPlay.ini</code>.</li>
+              <li>Continue with the x64 achievement configuration steps below.</li>
+            </ol>
+            <h3>x64 installation</h3>
+            <ol class="steps">
+              <li>
+                Copy <code>LumaPlay_x64.exe</code> and <code>LumaPlayFiles</code>
+                into the game folder.
+              </li>
+              <li>
+                Copy <code>uplay_r164.dll</code> from the Ubisoft launcher into
+                <code>LumaPlayFiles</code> and rename it to
+                <code>UbiAPI.dll</code>.
+              </li>
+              <li>Update the executable name and other settings in <code>LumaPlay.ini</code>.</li>
+              <li>
+                Configure the <code>[Achievements]</code> section, for example:
+                <pre><code>[Achievements]
+GenerateAchievementReportOnExit = 1
+NumberOfAchievements = 50
+UplayGameID = 1803
+
+Achievement_1 = The Spark - Complete the game intro by liberating Dutch's island (Solo Campaign only).
+Achievement_2 = You Are Wrath - Be deemed the Sin of Wrath (Solo Campaign only).
+Achievement_3 = Special Delivery - Ensure a baby's safe passage into this world (Solo Campaign only).
+Achievement_4 = Only You - Successfully complete the First Trial (Solo Campaign only).
+...</code></pre>
+              </li>
+              <li>
+                In Achievements, enable the LumaPlay folder watcher in
+                <strong>Settings → Folders</strong>.
+              </li>
+              <li>
+                Start the game through LumaPlay. The app can detect the AppID
+                after the registry data is generated and then create the config.
+              </li>
+            </ol>
+          </div>
+        </section>
+
+        <section class="section anchor-target" id="gog-universelan">
+          <div class="panel">
+            <h2>GOG UniverseLAN</h2>
+            <ol class="steps">
+              <li>
+                Check which <code>galaxy64.dll</code> version the game uses.
+              </li>
+              <li>
+                Find and download the matching UniverseLAN build from its GitHub releases.
+              </li>
+              <li>
+                Extract the files into the game folder and replace the existing
+                <code>galaxy64.dll</code>.
+              </li>
+              <li>
+                Run <code>UniverseLANServer64.exe</code>, keep it open, then
+                launch the game executable.
+              </li>
+              <li>
+                UniverseLAN generates local achievements in
+                <code>&lt;gamefolder&gt;\UniverseLANData\Achievements.ini</code>.
+              </li>
+              <li>
+                Add the game folder to <strong>Watched Folders</strong> so the
+                app can detect the AppID and generate the config.
+              </li>
+            </ol>
+          </div>
+        </section>
+
+        <section class="section anchor-target" id="nemirtingas-epic-emu">
+          <div class="panel">
+            <h2>NemirtingasEpicEmu</h2>
+            <ol class="steps">
+              <li>Open <a href="https://egdata.app/" target="_blank" rel="noopener noreferrer">egdata.app</a> and copy the game's Namespace.</li>
+              <li>
+                Extract and run <code>fetch_epic_achievements.bat</code>.
+              </li>
+              <li>
+                Copy the generated <code>achievements_db.json</code> and
+                achievement images into <code>nepice_settings</code> next to
+                <code>EOSSDK-Win64-Shipping.dll</code>.
+              </li>
+              <li>
+                Edit <code>NemirtingasEpicEmu.json</code> and replace the
+                <code>AppId</code> with the Namespace.
+              </li>
+              <li>
+                Create a <code>Launcher.txt</code> file next to the game
+                executable, put this content inside it, then rename the file to
+                <code>.bat</code>:
+                <pre><code>@echo off
+cd /d "%~dp0"
+start /b "Alan Wake 2" "AlanWake2.exe" -AUTH_LOGIN=unused -AUTH_PASSWORD=cdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd -AUTH_TYPE=exchangecode -epicapp=c4763f236d08423eb47b4c3008779c84 -epicenv=Prod -EpicPortal -epicusername="Player" -epicuserid=4340353b292a150000e7d9b5a47b6343 -epicsandboxid=c4763f236d08423eb47b4c3008779c84 -epiclocale=en</code></pre>
+                Change the values for the target game:
+                <code>Alan Wake 2</code> is the window title,
+                <code>AlanWake2.exe</code> is the game executable name, and
+                <code>epicapp</code> plus <code>epicsandboxid</code> must use
+                the Namespace taken from <code>egdata.app</code>.
+              </li>
+              <li>
+                Add <code>%APPDATA%\NemirtingasEpicEmu</code> to
+                <strong>Watched Folders</strong>. The app can detect the
+                Namespace and generate the config automatically.
+              </li>
+            </ol>
+            <div class="media-frame">
+              <a
+                class="media-link"
+                href="images/NemirtingasEpicEmu.gif"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  src="images/NemirtingasEpicEmu.gif"
+                  alt="NemirtingasEpicEmu setup"
+                  loading="lazy"
+                />
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <section class="section anchor-target" id="anadius-origin-ea-emu">
+          <div class="panel">
+            <h2>anadius Origin/EA Emu</h2>
+            <ol class="steps">
+              <li>
+                Get anadius Origin emulator tools, including
+                <code>example config + tools.7z</code> and
+                <code>get_token.exe</code>.
+              </li>
+              <li>Install the Tampermonkey browser extension.</li>
+              <li>
+                Drag <code>Origin Helper.user.js</code> from
+                <code>example config + tools</code> into Tampermonkey.
+              </li>
+              <li>
+                Open <code>ea.com</code>, click
+                <strong>Origin Helper</strong> in the top-left area, then click
+                <strong>Generate emulator config</strong>.
+              </li>
+              <li>
+                Select the game's
+                <code>__Installer\installerdata.xml</code>.
+              </li>
+              <li>
+                Check these options:
+                <ul class="clean-list">
+                  <li><code>Use default port</code></li>
+                  <li><code>Add Content section</code></li>
+                  <li><code>Add placeholder Entitlement</code></li>
+                  <li><code>Add achievements</code></li>
+                </ul>
+                Then click <strong>Continue</strong>.
+              </li>
+              <li>
+                In a new tab open <code>https://isthereanydeal.com/</code> and
+                search for the game.
+              </li>
+              <li>
+                Open the game page, scroll to or search for
+                <strong>Products</strong>, find the EA Store entry, and copy the
+                <code>Origin.OFR</code> id.
+              </li>
+              <li>
+                Paste that id into the <strong>Origin Helper</strong> field and
+                click <strong>Continue</strong>.
+              </li>
+              <li>
+                Run EA App, sign in, then run <code>get_token.exe</code>.
+              </li>
+              <li>
+                Copy the four output lines from <code>get_token.exe</code>:
+                access token, username, user ID, and persona ID. Paste them
+                into Origin Helper and click <strong>Continue</strong>.
+              </li>
+              <li>
+                On the next screen, open the SteamDB link in a new tab, go to
+                the <strong>Achievements</strong> page, press <code>F12</code>,
+                and paste this into the console:
+                <pre><code>copy(document.documentElement.outerHTML)</code></pre>
+              </li>
+              <li>
+                Paste the copied HTML into the <strong>Origin Helper</strong>
+                field. After the achievements show up as
+                <strong>Green Fields</strong>, click
+                <strong>Continue</strong>.
+              </li>
+              <li>
+                Save <code>anadius.cfg</code> and copy it together with
+                <code>anadius32.dll</code> or <code>anadius64.dll</code> into
+                the game folder next to <code>game.exe</code>.
+              </li>
+              <li>
+                Add
+                <code>%LOCALAPPDATA%\anadius\LSX emu\achievement_watcher</code>
+                to <strong>Watched Folders</strong>. The app can detect the
+                AppID and generate the config.
+              </li>
+            </ol>
+            <div class="media-frame">
+              <a
+                class="media-link"
+                href="images/anadius_EA_Emu.gif"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  src="images/anadius_EA_Emu.gif"
+                  alt="anadius Origin and EA emulator setup"
+                  loading="lazy"
+                />
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <section class="section anchor-target" id="xenia-canary">
+          <div class="section-head">
+            <h2>Console Emulators</h2>
+            <p>Xenia, RPCS3, and ShadPS4 native emulator flows.</p>
+          </div>
+          <div class="panel">
+            <h2>Xenia-Canary support</h2>
+            <ol class="steps">
+              <li>Open Xenia and create a user profile.</li>
+              <li>
+                Add the generated
+                <code>Xenia\Content\xxxxxx\xxxx\xxxx\xxxxxx</code> path to
+                <strong>Watched Folders</strong>.
+              </li>
+              <li>Start and play the game.</li>
+              <li>
+                The app reads the generated file, fetches game name, schema, and
+                images, auto-generates the config, and shows notifications on
+                new unlocks.
+              </li>
+            </ol>
+          </div>
+        </section>
+
+        <section class="section anchor-target" id="rpcs3">
+          <div class="panel">
+            <h2>RPCS3 support</h2>
+            <ol class="steps">
+              <li>
+                Add
+                <code>RPCS3\dev_hdd0\home\xxxxxxx\trophy</code> to
+                <strong>Watched Folders</strong>.
+              </li>
+              <li>Start and play the game.</li>
+              <li>
+                The app reads trophy files, fetches schema and images, generates
+                configs automatically, and shows notifications on unlock.
+              </li>
+            </ol>
+          </div>
+        </section>
+
+        <section class="section anchor-target" id="shadps4">
+          <div class="panel">
+            <h2>ShadPS4 support</h2>
+            <ol class="steps">
+              <li>
+                Add the ShadPS4 root folder:
+                <code>%APPDATA%\shadPS4</code>.
+              </li>
+              <li>
+                Start and play the game so ShadPS4 creates trophy schema and
+                user progress files.
+              </li>
+              <li>
+                The app reads schema from
+                <code>%APPDATA%\shadPS4\trophy\&lt;NPWR&gt;\Xml</code>, copies
+                icons from
+                <code>%APPDATA%\shadPS4\trophy\&lt;NPWR&gt;\Icons</code>, and
+                reads progress from
+                <code>%APPDATA%\shadPS4\home\&lt;userId&gt;\trophy\&lt;NPWR&gt;.xml</code>.
+              </li>
+            </ol>
+            <h3>Important notes</h3>
+            <ul class="clean-list">
+              <li>
+                Modern ShadPS4 storage is preferred when both modern and legacy
+                layouts exist.
+              </li>
+              <li>
+                Legacy storage under
+                <code>%APPDATA%\shadPS4\game_data\&lt;CUSA&gt;\TrophyFiles\trophy00</code>
+                is still supported.
+              </li>
+              <li>
+                If multiple users exist, achievement caches are scoped per user.
+              </li>
+            </ul>
+          </div>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>
