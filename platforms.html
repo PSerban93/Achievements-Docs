@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -74,12 +74,12 @@
           <div class="media-frame">
             <a
               class="media-link"
-              href="https://github.com/PSerban93/Achievements-Docs/releases/download/v1.0/Settings%20-%20Platform%20Guide.gif"
+              href="https://github.com/PSerban93/Achievements-Docs/releases/download/v1.0/Settings.-.Platform.Guide.gif"
               target="_blank"
               rel="noopener noreferrer"
             >
               <img
-                src="https://github.com/PSerban93/Achievements-Docs/releases/download/v1.0/Settings%20-%20Platform%20Guide.gif"
+                src="https://github.com/PSerban93/Achievements-Docs/releases/download/v1.0/Settings.-.Platform.Guide.gif"
                 alt="Platform guide section in Settings"
                 loading="lazy"
               />
@@ -100,12 +100,16 @@
             </a>
             <a class="card card-link" href="#epic-games">
               <h3>Epic Games</h3>
-              <p>Library import, manifests, and official achievement polling.</p>
+              <p>
+                Library import, manifests, and official achievement polling.
+              </p>
               <span class="card-cta">Jump to section</span>
             </a>
             <a class="card card-link" href="#gog-galaxy">
               <h3>GOG Galaxy</h3>
-              <p>Gameplay database parsing and auto-generated official configs.</p>
+              <p>
+                Gameplay database parsing and auto-generated official configs.
+              </p>
               <span class="card-cta">Jump to section</span>
             </a>
             <a class="card card-link" href="#ubisoft-connect">
@@ -115,7 +119,9 @@
             </a>
             <a class="card card-link" href="#ea-desktop">
               <h3>EA Desktop</h3>
-              <p>Log-driven schema generation and official config monitoring.</p>
+              <p>
+                Log-driven schema generation and official config monitoring.
+              </p>
               <span class="card-cta">Jump to section</span>
             </a>
           </div>
@@ -127,12 +133,18 @@
           </div>
           <div class="subsection-head">
             <h3>Emulators</h3>
-            <p>Goldberg, Uplay, GOG, Epic, and EA helper-based generation methods.</p>
+            <p>
+              Goldberg, Uplay, GOG, Epic, and EA helper-based generation
+              methods.
+            </p>
           </div>
           <div class="card-grid">
             <a class="card card-link" href="#gse">
               <h3>GSE</h3>
-              <p>Generate Goldberg Steam Emulator configs with Steam account data.</p>
+              <p>
+                Generate Goldberg Steam Emulator configs with Steam account
+                data.
+              </p>
               <span class="card-cta">Jump to section</span>
             </a>
             <a class="card card-link" href="#gse-roschach96">
@@ -147,12 +159,16 @@
             </a>
             <a class="card card-link" href="#uplay-roschach96">
               <h3>Uplay Roschach96</h3>
-              <p>Semi-auto Goldberg Uplay flow through the bundled batch setup.</p>
+              <p>
+                Semi-auto Goldberg Uplay flow through the bundled batch setup.
+              </p>
               <span class="card-cta">Jump to section</span>
             </a>
             <a class="card card-link" href="#uplay-lumaplay">
               <h3>Uplay Lumaplay</h3>
-              <p>Registry-driven Uplay emulation with local achievement reports.</p>
+              <p>
+                Registry-driven Uplay emulation with local achievement reports.
+              </p>
               <span class="card-cta">Jump to section</span>
             </a>
             <a class="card card-link" href="#gog-universelan">
@@ -162,7 +178,9 @@
             </a>
             <a class="card card-link" href="#nemirtingas-epic-emu">
               <h3>NemirtingasEpicEmu</h3>
-              <p>Namespace-based Epic achievement generation and local settings.</p>
+              <p>
+                Namespace-based Epic achievement generation and local settings.
+              </p>
               <span class="card-cta">Jump to section</span>
             </a>
             <a class="card card-link" href="#anadius-origin-ea-emu">
@@ -320,8 +338,7 @@
               </li>
               <li>
                 The app generates local schema and images, creates an
-                <code>ea-official</code> config, and monitors later log
-                changes.
+                <code>ea-official</code> config, and monitors later log changes.
               </li>
             </ol>
           </div>
@@ -330,7 +347,10 @@
         <section class="section anchor-target" id="gse">
           <div class="section-head">
             <h2>Emulators</h2>
-            <p>Goldberg, Uplay, GOG, Epic, and EA helper-based generation methods.</p>
+            <p>
+              Goldberg, Uplay, GOG, Epic, and EA helper-based generation
+              methods.
+            </p>
           </div>
           <div class="panel">
             <h2>GSE</h2>
@@ -393,8 +413,10 @@ password</code></pre>
             <h2>GSE Roschach96 method</h2>
             <ol class="steps">
               <li>
-                Download Roschach96's <code>ColdClient semi-auto from Game Folder</code>
-                release and copy it into the game's main folder. Use clean Steam files.
+                Download Roschach96's
+                <code>ColdClient semi-auto from Game Folder</code>
+                release and copy it into the game's main folder. Use clean Steam
+                files.
               </li>
               <li>
                 Extract in place and run
@@ -499,7 +521,9 @@ password</code></pre>
               </li>
               <li>
                 Run
-                <code>_goldberg_uplay_r2_semi-auto_setup_aw_joker_combined_V6.bat</code>.
+                <code
+                  >_goldberg_uplay_r2_semi-auto_setup_aw_joker_combined_V6.bat</code
+                >.
               </li>
               <li>Follow the prompts to complete the setup.</li>
             </ol>
@@ -517,17 +541,25 @@ password</code></pre>
               </li>
               <li>
                 Copy the original <code>uplay_r1.dll</code> from
-                <code>C:\Program Files (x86)\Ubisoft\Ubisoft Game Launcher</code>
+                <code
+                  >C:\Program Files (x86)\Ubisoft\Ubisoft Game Launcher</code
+                >
                 into <code>LumaPlayFiles</code> and rename it to
                 <code>UbiAPI.dll</code>.
               </li>
-              <li>Update the executable name and other settings in <code>LumaPlay.ini</code>.</li>
-              <li>Continue with the x64 achievement configuration steps below.</li>
+              <li>
+                Update the executable name and other settings in
+                <code>LumaPlay.ini</code>.
+              </li>
+              <li>
+                Continue with the x64 achievement configuration steps below.
+              </li>
             </ol>
             <h3>x64 installation</h3>
             <ol class="steps">
               <li>
-                Copy <code>LumaPlay_x64.exe</code> and <code>LumaPlayFiles</code>
+                Copy <code>LumaPlay_x64.exe</code> and
+                <code>LumaPlayFiles</code>
                 into the game folder.
               </li>
               <li>
@@ -535,7 +567,10 @@ password</code></pre>
                 <code>LumaPlayFiles</code> and rename it to
                 <code>UbiAPI.dll</code>.
               </li>
-              <li>Update the executable name and other settings in <code>LumaPlay.ini</code>.</li>
+              <li>
+                Update the executable name and other settings in
+                <code>LumaPlay.ini</code>.
+              </li>
               <li>
                 Configure the <code>[Achievements]</code> section, for example:
                 <pre><code>[Achievements]
@@ -569,7 +604,8 @@ Achievement_4 = Only You - Successfully complete the First Trial (Solo Campaign 
                 Check which <code>galaxy64.dll</code> version the game uses.
               </li>
               <li>
-                Find and download the matching UniverseLAN build from its GitHub releases.
+                Find and download the matching UniverseLAN build from its GitHub
+                releases.
               </li>
               <li>
                 Extract the files into the game folder and replace the existing
@@ -581,7 +617,8 @@ Achievement_4 = Only You - Successfully complete the First Trial (Solo Campaign 
               </li>
               <li>
                 UniverseLAN generates local achievements in
-                <code>&lt;gamefolder&gt;\UniverseLANData\Achievements.ini</code>.
+                <code>&lt;gamefolder&gt;\UniverseLANData\Achievements.ini</code
+                >.
               </li>
               <li>
                 Add the game folder to <strong>Watched Folders</strong> so the
@@ -595,10 +632,17 @@ Achievement_4 = Only You - Successfully complete the First Trial (Solo Campaign 
           <div class="panel">
             <h2>NemirtingasEpicEmu</h2>
             <ol class="steps">
-              <li>Open <a href="https://egdata.app/" target="_blank" rel="noopener noreferrer">egdata.app</a> and copy the game's Namespace.</li>
               <li>
-                Extract and run <code>fetch_epic_achievements.bat</code>.
+                Open
+                <a
+                  href="https://egdata.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >egdata.app</a
+                >
+                and copy the game's Namespace.
               </li>
+              <li>Extract and run <code>fetch_epic_achievements.bat</code>.</li>
               <li>
                 Copy the generated <code>achievements_db.json</code> and
                 achievement images into <code>nepice_settings</code> next to
@@ -690,13 +734,11 @@ start /b "Alan Wake 2" "AlanWake2.exe" -AUTH_LOGIN=unused -AUTH_PASSWORD=cdcdcdc
                 Paste that id into the <strong>Origin Helper</strong> field and
                 click <strong>Continue</strong>.
               </li>
-              <li>
-                Run EA App, sign in, then run <code>get_token.exe</code>.
-              </li>
+              <li>Run EA App, sign in, then run <code>get_token.exe</code>.</li>
               <li>
                 Copy the four output lines from <code>get_token.exe</code>:
-                access token, username, user ID, and persona ID. Paste them
-                into Origin Helper and click <strong>Continue</strong>.
+                access token, username, user ID, and persona ID. Paste them into
+                Origin Helper and click <strong>Continue</strong>.
               </li>
               <li>
                 On the next screen, open the SteamDB link in a new tab, go to
@@ -707,8 +749,7 @@ start /b "Alan Wake 2" "AlanWake2.exe" -AUTH_LOGIN=unused -AUTH_PASSWORD=cdcdcdc
               <li>
                 Paste the copied HTML into the <strong>Origin Helper</strong>
                 field. After the achievements show up as
-                <strong>Green Fields</strong>, click
-                <strong>Continue</strong>.
+                <strong>Green Fields</strong>, click <strong>Continue</strong>.
               </li>
               <li>
                 Save <code>anadius.cfg</code> and copy it together with
@@ -799,7 +840,9 @@ start /b "Alan Wake 2" "AlanWake2.exe" -AUTH_LOGIN=unused -AUTH_PASSWORD=cdcdcdc
                 icons from
                 <code>%APPDATA%\shadPS4\trophy\&lt;NPWR&gt;\Icons</code>, and
                 reads progress from
-                <code>%APPDATA%\shadPS4\home\&lt;userId&gt;\trophy\&lt;NPWR&gt;.xml</code>.
+                <code
+                  >%APPDATA%\shadPS4\home\&lt;userId&gt;\trophy\&lt;NPWR&gt;.xml</code
+                >.
               </li>
             </ol>
             <h3>Important notes</h3>
@@ -810,7 +853,9 @@ start /b "Alan Wake 2" "AlanWake2.exe" -AUTH_LOGIN=unused -AUTH_PASSWORD=cdcdcdc
               </li>
               <li>
                 Legacy storage under
-                <code>%APPDATA%\shadPS4\game_data\&lt;CUSA&gt;\TrophyFiles\trophy00</code>
+                <code
+                  >%APPDATA%\shadPS4\game_data\&lt;CUSA&gt;\TrophyFiles\trophy00</code
+                >
                 is still supported.
               </li>
               <li>
