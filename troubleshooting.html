@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -66,13 +66,15 @@
             <h2>Known limitations</h2>
             <ul class="clean-list">
               <li>
-                Match privilege level between app and game
-                (<code>admin/admin</code> or <code>non-admin/non-admin</code>)
-                for more reliable overlay behavior.
+                Match privilege level between app and game (<code
+                  >admin/admin</code
+                >
+                or <code>non-admin/non-admin</code>) for more reliable overlay
+                behavior.
               </li>
               <li>
-                If overlay shortcuts fail in a game, switch to a 3-key combo
-                and test the <code>Ctrl+PageUp</code> /
+                If overlay shortcuts fail in a game, switch to a 3-key combo and
+                test the <code>Ctrl+PageUp</code> /
                 <code>Ctrl+PageDown</code> fallback.
               </li>
               <li>
@@ -108,8 +110,26 @@
               </li>
               <li>
                 If Special K or another injector is active, enable
-                <strong>Force globalShortcut for overlay</strong>.
+                <strong>Force globalShortcut for overlay</strong>. This switches
+                overlay shortcuts to Electron globalShortcut, disables
+                hook-based drag, and can resolve compatibility/composition
+                issues on affected systems. The user additionally in MANY cases
+                MUST also indicate/select this on Special K:
               </li>
+              <div class="media-frame">
+                <a
+                  class="media-link"
+                  href="https://github.com/PSerban93/Achievements-Docs/releases/download/v1.0/SpecialK - Settings.png"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img
+                    src="https://github.com/PSerban93/Achievements-Docs/releases/download/v1.0/SpecialK - Settings.png"
+                    alt="Special K settings"
+                    loading="lazy"
+                  />
+                </a>
+              </div>
               <li>
                 Reduce long notification durations if users report delayed
                 unlock display.
