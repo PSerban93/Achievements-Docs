@@ -26,8 +26,7 @@
   --radius-sm: 12px;
   --max: 1200px;
   --sidebar: 280px;
-  --font:
-    "Segoe UI", "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font: "Segoe UI", "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 * {
@@ -344,8 +343,9 @@ body[data-page="home"] .section {
   height: auto;
 }
 
-.media-frame + .card-grid {
-  margin-top: 18px;
+.media-frame--small {
+  max-width: 500px;
+  margin: 18px auto;
 }
 
 .media-stack {
