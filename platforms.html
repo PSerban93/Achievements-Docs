@@ -114,6 +114,13 @@
               </p>
               <span class="card-cta">Jump to section</span>
             </a>
+            <a class="card card-link" href="#xbox-pc">
+              <h3>Xbox PC</h3>
+              <p>
+                Microsoft sign-in, PC library import, and Xbox Network sync.
+              </p>
+              <span class="card-cta">Jump to section</span>
+            </a>
             <a class="card card-link" href="#gog-galaxy">
               <h3>GOG Galaxy</h3>
               <p>
@@ -269,6 +276,69 @@
               Store images are resolved through Epic metadata first and fall
               back to SteamGridDB only when needed.
             </p>
+          </div>
+        </section>
+
+        <section class="section anchor-target" id="xbox-pc">
+          <div class="panel">
+            <h2>Xbox PC (Microsoft / Xbox Network) support</h2>
+            <ol class="steps">
+              <li>
+                Open <strong>Settings - Advanced</strong> and select
+                <strong>Connect Xbox</strong> under
+                <strong>Xbox PC (Microsoft / Xbox Network)</strong>.
+              </li>
+              <li>
+                Sign in through Microsoft OAuth with the account used by the
+                Windows Xbox app.
+              </li>
+              <li>
+                Use <strong>Import Xbox PC</strong>. The app reads
+                achievement-enabled Windows/PC titles from the Xbox profile,
+                scans local <code>XboxGames</code> and packaged GDK
+                installations, generates <code>xbox-pc</code> configs and
+                achievement schemas, and correlates local executable or AUMID
+                information when available.
+              </li>
+              <li>
+                Achievement state is refreshed directly from Xbox Network for
+                the selected Xbox PC config, with request throttling and a local
+                cache fallback.
+              </li>
+            </ol>
+            <h3>Important notes</h3>
+            <ul class="clean-list">
+              <li>
+                Xbox console-only history is excluded. A title is imported only
+                when Xbox reports a Windows/PC device or its Title ID matches a
+                locally installed game.
+              </li>
+              <li>
+                Games delegated to EA App, Ubisoft Connect, or another launcher
+                may not provide Xbox achievements on PC.
+              </li>
+              <li>
+                Microsoft refresh tokens and Xbox XSTS sessions are stored
+                encrypted. The app never asks for or stores the Microsoft
+                account password or an Entra client secret.
+              </li>
+              <li>
+                The experimental authentication route uses the public desktop
+                OAuth identity published by the
+                <a
+                  href="https://github.com/OpenXbox/xbox-webapi-python"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >OpenXbox Xbox-WebAPI project</a
+                >. This identity is not owned by the Achievements project;
+                Microsoft may restrict or revoke its use, and direct Xbox
+                Network endpoints may still reject requests.
+              </li>
+              <li>
+                <code>xbox-pc</code> configs are generated automatically and are
+                not meant to be created manually.
+              </li>
+            </ul>
           </div>
         </section>
 
