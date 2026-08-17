@@ -536,33 +536,44 @@ password</code></pre>
             <h2>Uplay Goldberg method</h2>
             <ol class="steps">
               <li>
-                Download Roschach96's
-                <code>GSE Uplay R2 semi-auto AW Joker combined</code> package.
+                Download
+                <a
+                  href="https://pixeldrain.com/u/yZNDW2ko"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  ><code>Uplay.zip</code></a
+                >.
               </li>
               <li>
-                Place <code>generate_achievements_schema_vX.ps1</code> next to
-                the <code>@alex47exe generate_emu_config</code> folder.
+                Extract Uplay.zip and copy the Uplay folder into the
+                generate_emu_config folder.
               </li>
               <li>
-                Generate the base files with <code>generate_emu_config</code>
-                using the Steam AppID of the Ubisoft title.
-              </li>
-              <li>
-                Open a command prompt in the PowerShell script folder and run:
-                <pre><code>.\generate_achievements_schema_vX.ps1 steamAppid</code></pre>
+                Open the
+                <code>generate_uplay_achievements_from_steam.bat</code> file and
+                run it using the Steam AppID of the Ubisoft title.
               </li>
               <li>
                 This produces <code>achievements_schema.json</code> for the
                 Uplay game.
               </li>
               <li>
-                Copy Goldberg Uplay R2 files and
+                Copy Goldberg Uplay R1 or R2 files and
                 <code>achievements_schema.json</code> into the game folder and
-                replace the original Uplay DLLs.
+                replace the original Uplay DLLs. Check the Uplay R1/R2 ini file
+                for the Achievements configuration to be enabled.
               </li>
               <li>
-                Start the game. Achievements can auto-detect it from the default
-                watched folder <code>%APPDATA%\Goldberg UplayEmu Saves</code>.
+                Start the game if game is using r2 version. Achievements can
+                auto-detect it from the default watched folder
+                <code>%APPDATA%\Goldberg UplayEmu Saves</code>.
+              </li>
+              <li>
+                If game is using r1 version, check the Uplay R1 ini file for the
+                location where the achievements data is stored. Add the folder
+                to Settings - Folders and start the game. Achievements will
+                auto-detect it after the folder was added to the watched
+                folders.
               </li>
             </ol>
             <p class="note">
