@@ -99,7 +99,10 @@
         <section class="section">
           <div class="section-head">
             <h2>Platforms</h2>
-            <p>Official launcher integrations and native client flows.</p>
+            <p>
+              Official launcher integrations, online services, and native
+              client flows.
+            </p>
           </div>
           <div class="card-grid">
             <a class="card card-link" href="#steam-official">
@@ -118,6 +121,13 @@
               <h3>Xbox PC</h3>
               <p>
                 Microsoft sign-in, PC library import, and Xbox Network sync.
+              </p>
+              <span class="card-cta">Jump to section</span>
+            </a>
+            <a class="card card-link" href="#retroachievements">
+              <h3>RetroAchievements</h3>
+              <p>
+                Account library import and read-only achievement polling.
               </p>
               <span class="card-cta">Jump to section</span>
             </a>
@@ -150,8 +160,8 @@
           <div class="subsection-head">
             <h3>Emulators</h3>
             <p>
-              Goldberg, Uplay, GOG, Epic, and EA helper-based generation
-              methods.
+              Goldberg, Uplay, GOG, Epic, EA, and Games for Windows - LIVE
+              helper-based generation methods.
             </p>
           </div>
           <div class="card-grid">
@@ -181,9 +191,17 @@
               <span class="card-cta">Jump to section</span>
             </a>
             <a class="card card-link" href="#uplay-lumaplay">
-              <h3>Uplay Lumaplay</h3>
+              <h3>Uplay LumaPlay</h3>
               <p>
                 Registry-driven Uplay emulation with local achievement reports.
+              </p>
+              <span class="card-cta">Jump to section</span>
+            </a>
+            <a class="card card-link" href="#xlivelessness">
+              <h3>XLiveLessNess</h3>
+              <p>
+                Games for Windows - LIVE schema extraction and local unlock
+                tracking.
               </p>
               <span class="card-cta">Jump to section</span>
             </a>
@@ -231,7 +249,10 @@
         <section class="section anchor-target" id="steam-official">
           <div class="section-head">
             <h2>Platforms</h2>
-            <p>Official launcher integrations and native client flows.</p>
+            <p>
+              Official launcher integrations, online services, and native
+              client flows.
+            </p>
           </div>
           <div class="panel">
             <h2>Steam Official support</h2>
@@ -275,6 +296,12 @@
             <p class="note">
               Store images are resolved through Epic metadata first and fall
               back to SteamGridDB only when needed.
+            </p>
+            <p class="note">
+              For Epic emulator folders that use an artifact or AppID instead
+              of a namespace, schema generation resolves the related catalog
+              item and namespace before continuing through the normal Epic
+              schema flow.
             </p>
           </div>
         </section>
@@ -337,6 +364,51 @@
               <li>
                 <code>xbox-pc</code> configs are generated automatically and are
                 not meant to be created manually.
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="section anchor-target" id="retroachievements">
+          <div class="panel">
+            <h2>RetroAchievements support</h2>
+            <ol class="steps">
+              <li>
+                Open <strong>Settings - Advanced</strong> and enter your
+                RetroAchievements username and Web API key from the
+                RetroAchievements control panel.
+              </li>
+              <li>
+                Select <strong>Connect</strong>, then
+                <strong>Import Library</strong>. The app creates separate
+                <code>retroachievements</code> configs and achievement schemas
+                for the account history.
+              </li>
+              <li>
+                Select a RetroAchievements config in the dashboard to start its
+                API poller. New unlocks received after the initial cached state
+                generate notifications.
+              </li>
+            </ol>
+            <h3>Important notes</h3>
+            <ul class="clean-list">
+              <li>
+                This integration uses only the read-only RetroAchievements Web
+                API. It does not scan emulators, ROMs, processes, or local game
+                folders.
+              </li>
+              <li>
+                The Web API key is stored with Electron safe storage and is not
+                written as plaintext to preferences or config files.
+              </li>
+              <li>
+                Polling runs only for the RetroAchievements config explicitly
+                selected in the UI. It stops when another platform or config is
+                selected, or when the account is disconnected.
+              </li>
+              <li>
+                The initial import seeds existing unlocks silently, preventing
+                historical unlocks from producing a notification burst.
               </li>
             </ul>
           </div>
@@ -517,7 +589,7 @@ password</code></pre>
                 your Steam account as:
                 <pre><code>username
 password</code></pre>
-              </li>              
+              </li>
               <li>
                 Enter the Steam AppID and let the script finish the setup.
               </li>
@@ -567,8 +639,20 @@ password</code></pre>
               </li>
               <li>
                 Extract Uplay.zip and copy the Uplay folder into the
-                generate_emu_config folder.
+                <a
+                  href="https://pixeldrain.com/u/3RcQGaM6"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  ><code>generate_emu_config</code></a
+                >
+                folder.
               </li>
+              <li>
+                Create <code>my_login.txt</code> in that folder and save your
+                Steam account as:
+                <pre><code>username
+password</code></pre>
+              </li>              
               <li>
                 Open the
                 <code>generate_uplay_achievements_from_steam.bat</code> file and
@@ -590,11 +674,9 @@ password</code></pre>
                 <code>%APPDATA%\Goldberg UplayEmu Saves</code>.
               </li>
               <li>
-                If game is using r1 version, check the Uplay R1 ini file for the
-                location where the achievements data is stored. Add the folder
-                to Settings - Folders and start the game. Achievements will
-                auto-detect it after the folder was added to the watched
-                folders.
+                Start the game if game is using r1 version. Achievements can
+                auto-detect it from the default watched folder
+                <code>%APPDATA%\R1 UplayEmu Saves</code>.
               </li>
             </ol>
             <p class="note">
@@ -604,6 +686,20 @@ password</code></pre>
                 target="_blank"
                 rel="noopener noreferrer"
                 >Ubisoft Games with Achievements</a
+              >
+              <br />
+              Uplay Emus:
+              <a
+                href="https://cs.rin.ru/forum/viewtopic.php?p=3572254#p3572254"
+                target="_blank"
+                rel="noopener noreferrer"
+                >R1</a
+              >
+              <a
+                href="https://cs.rin.ru/forum/viewtopic.php?p=3547849#p3547849"
+                target="_blank"
+                rel="noopener noreferrer"
+                >R2</a
               >
             </p>
             <div class="media-frame">
@@ -655,7 +751,7 @@ password</code></pre>
 
         <section class="section anchor-target" id="uplay-lumaplay">
           <div class="panel">
-            <h2>Uplay Lumaplay</h2>
+            <h2>Uplay LumaPlay</h2>
             <h3>x86 installation</h3>
             <ol class="steps">
               <li>
@@ -708,18 +804,121 @@ Achievement_4 = Only You - Successfully complete the First Trial (Solo Campaign 
 ...</code></pre>
               </li>
               <li>
-                In Achievements, enable the LumaPlay folder watcher in
-                <strong>Settings → Folders</strong>.
+                In Achievements, enable
+                <strong>Settings - Folders - Enable LumaPlay Watcher</strong>.
               </li>
               <li>
-                Start the game through LumaPlay. The app can detect the AppID
-                after the registry data is generated and then create the config.
+                Start the game through LumaPlay. The app scans achievement
+                entries under <code>HKCU\SOFTWARE\LumaPlay</code>, detects the
+                AppID, and generates a matching <code>uplay</code> config with
+                <code>emu=lumaplay</code> when possible.
               </li>
-              <p class="note">
-                Make sure uplay_r1_loader(64).dll in the main game folder is
-                original as possible.
-              </p>
             </ol>
+            <h3>Important notes</h3>
+            <ul class="clean-list">
+              <li>
+                While enabled, native registry change events trigger
+                achievement refreshes and notifications without repeatedly
+                polling the entire registry tree.
+              </li>
+              <li>
+                The LumaPlay registry watcher is Windows-only and starts only
+                while the option is enabled.
+              </li>
+              <li>
+                Disabling it stops LumaPlay registry monitoring, but does not
+                disable watched-folder monitoring or normal process detection.
+              </li>
+            </ul>
+            <p class="note">
+              Make sure <code>uplay_r1_loader(64).dll</code> in the main game
+              folder is as close to the original file as possible.
+            </p>
+          </div>
+        </section>
+
+        <section class="section anchor-target" id="xlivelessness">
+          <div class="panel">
+            <h2>XLiveLessNess support</h2>
+            <ol class="steps">
+              <li>
+                Install and configure XLiveLessNess for the supported Games for
+                Windows - LIVE title. Start the game once if the emulator needs
+                to create its profile data.
+              </li>
+              <li>
+                Add the installed game directory in
+                <strong>Settings - Folders</strong>. You may add the game root
+                or a parent containing the required files within the supported
+                discovery depth.
+              </li>
+              <li>
+                Confirm that one executable directory contains
+                <code>xlive.dll</code>, <code>&lt;game&gt;.exe</code>, and the
+                matching <code>&lt;game&gt;.exe.cfg</code>. Use
+                <strong>Folders - Rescan</strong> if the folder was added before
+                these files were installed.
+              </li>
+              <li>
+                The app reads the title ID from
+                <code>&lt;game&gt;.exe.cfg</code> and the executable's embedded
+                <code>SPAFILE</code> resource to obtain localized achievement
+                names and descriptions, Gamerscore values, and images.
+              </li>
+              <li>
+                A local <code>xlivelessness</code> config and schema are
+                generated. The executable and process names are saved for
+                launch, process detection, auto-selection, and playtime.
+              </li>
+              <li>
+                Unlocks are read from each matching
+                <code>&lt;profile&gt;\achievements.dat</code> below
+                <code>XLiveLessNess\profile\title\&lt;TITLEID&gt;</code>.
+              </li>
+            </ol>
+            <h3>Expected game-side layout</h3>
+            <pre><code>&lt;Game folder&gt;\
+└─ &lt;executable directory&gt;\
+   ├─ xlive.dll
+   ├─ &lt;game&gt;.exe
+   └─ &lt;game&gt;.exe.cfg</code></pre>
+            <h3>Important notes</h3>
+            <ul class="clean-list">
+              <li>
+                Discovery and SPAFILE/schema processing run asynchronously and
+                are shown in the standard generation progress rail.
+              </li>
+              <li>
+                <code>achievements.dat</code> is not required during initial
+                config generation. The adaptive watcher attaches after
+                XLiveLessNess creates the profile or title path.
+              </li>
+              <li>
+                The default <code>%LOCALAPPDATA%\XLiveLessNess</code> root and
+                game-local XLiveLessNess roots are monitored adaptively. A
+                custom storage root can also be added in
+                <strong>Settings - Folders</strong>.
+              </li>
+              <li>
+                When process command-line detection is available,
+                <code>-xllnconfig=&lt;path&gt;</code> is resolved and its containing
+                directory is added automatically as another state root.
+              </li>
+              <li>
+                Multiple executables for the same title ID are stored as
+                process-name alternatives in one config. Profiles keep separate
+                baselines to prevent false notifications when switching users.
+              </li>
+              <li>
+                Schema languages follow
+                <strong>Settings - Advanced - Achievements Schema Languages</strong>
+                when the embedded SPAFILE contains those localizations.
+              </li>
+              <li>
+                The app reads the installed executable, title config, and
+                achievement state without modifying game or emulator data.
+              </li>
+            </ul>
           </div>
         </section>
 
