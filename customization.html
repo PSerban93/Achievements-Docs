@@ -46,8 +46,20 @@
             <ul class="clean-list">
               <li>Open the game grid with <strong>Show Dashboard</strong>.</li>
               <li>Use search to filter games quickly.</li>
-              <li>Sort by name, progress, or last update time.</li>
+              <li>
+                Filter by platform and sort by name, progress, or last update
+                time.
+              </li>
               <li>Click a game card to load its config.</li>
+              <li>
+                Use <code>Ctrl + Click</code> or the card context menu to select
+                multiple games, then ignore, delete, or clear the selection from
+                the action bar.
+              </li>
+              <li>
+                Enable <strong>Show blacklisted games</strong> to inspect and
+                restore ignored games.
+              </li>
               <li>
                 Use the play button for games with configured executables.
               </li>
@@ -82,19 +94,54 @@
             <h2>Customization</h2>
             <ul class="clean-list">
               <li>Choose notification preset and screen position.</li>
+              <li>
+                Choose <strong>Native Windows</strong> to use Windows toast
+                notifications instead of an animated preset.
+              </li>
               <li>Select notification sounds and language.</li>
+              <li>
+                Select which achievement schema languages are generated from
+                <strong
+                  >Settings - Advanced - Achievements Schema Languages</strong
+                >.
+              </li>
               <li>Adjust UI scale from 75% to 200%.</li>
               <li>Adjust achievement duration and sound volume.</li>
               <li>Toggle hidden descriptions when available.</li>
               <li>Enable Close to Tray.</li>
               <li>Configure overlay shortcut and interaction key.</li>
               <li>
+                Configure <strong>Notification Click Action</strong> to open the
+                matching achievement in the non-focusable overlay or in the main
+                application. Opening the main application moves focus away from
+                the game.
+              </li>
+              <li>
+                Native Windows notifications retain independent navigation
+                routes in Action Center, allowing each available notification
+                to open its own achievement.
+              </li>
+              <li>
                 Enable or disable overlay controller support from
                 <strong>Settings → Advanced → Rendering</strong>.
               </li>
               <li>
-                Enable or disable achievement screenshots, progress
-                notifications, playtime notifications, and startup behavior.
+                Enable or disable achievement screenshots, achievement records,
+                progress notifications, playtime notifications, and startup
+                behavior.
+              </li>
+              <li>
+                Mute progress notifications independently for the active game
+                config.
+              </li>
+              <li>
+                Use <strong>Start with Windows</strong> to create or remove the
+                Task Scheduler entry for the current executable.
+              </li>
+              <li>
+                Disable the native process watcher to use executable-name
+                fallback detection through <code>ps-list</code>. Command-line
+                arguments are unavailable in fallback mode.
               </li>
             </ul>
             <div class="media-stack">
@@ -144,6 +191,108 @@
           </article>
         </section>
 
+        <section class="section split">
+          <article class="panel">
+            <h2>Xbox Game Bar notifications</h2>
+            <ul class="clean-list">
+              <li>
+                The optional Xbox Game Bar companion
+                <strong>Achievements Overlay by JokerVerse</strong> can deliver
+                native Game Bar notifications.
+              </li>
+              <li>
+                Delivery includes achievement unlocks, rarity or platinum
+                metadata, click navigation, and textual progress in
+                <code>current / maximum • percentage</code> format.
+              </li>
+              <li>
+                The companion is optional. If it is not installed or connected,
+                the Electron application remains independent and uses the
+                configured notification fallback.
+              </li>
+            </ul>
+          </article>
+
+          <article class="panel">
+            <h2>Achievement records</h2>
+            <ul class="clean-list">
+              <li>
+                Enable achievement recording to save a short clip around each
+                unlock.
+              </li>
+              <li>Select 30 or 60 FPS.</li>
+              <li>
+                Choose a total duration from 10 to 30 seconds, divided equally
+                before and after the unlock.
+              </li>
+              <li>
+                Recording captures the default Windows output mix. If system
+                audio is unavailable, recording safely falls back to video only;
+                microphone input is not captured.
+              </li>
+              <li>
+                Optional GPU HDR-to-SDR conversion keeps H.264/MP4 clips
+                compatible with standard SDR players.
+              </li>
+            </ul>
+          </article>
+        </section>
+
+        <section class="section split">
+          <article class="panel">
+            <h2>Changelogs</h2>
+            <ul class="clean-list">
+              <li>
+                <strong>Settings - Changelogs</strong> lists GitHub releases
+                with version, release type, publication date, and release notes.
+              </li>
+              <li>
+                Release data is cached for 30 minutes. <strong>Refresh</strong>
+                requests current data while the last valid cache remains
+                available offline.
+              </li>
+              <li>
+                Release links open GitHub in the default browser. Remote release
+                text is displayed as text and is not executed as HTML.
+              </li>
+            </ul>
+          </article>
+
+          <article class="panel">
+            <h2>Live logs</h2>
+            <ul class="clean-list">
+              <li>
+                <strong>Settings - Logs</strong> lists known application logs
+                and discovers additional <code>.log</code> files in the logs
+                directory.
+              </li>
+              <li>
+                The selected file is followed in real time across replacement,
+                truncation, and normal log rotation.
+              </li>
+              <li>
+                Search and <code>DEBUG</code>, <code>INFO</code>,
+                <code>WARN</code>, or <code>ERROR</code> filters affect only the
+                displayed lines.
+              </li>
+              <li>
+                <strong>Pause</strong> pauses UI updates,
+                <strong>Clear View</strong> clears only the in-memory view, and
+                <strong>Open Logs Folder</strong> opens the source files.
+              </li>
+              <li>
+                The initial view contains at most 1,000 recent lines and the UI
+                retains at most 2,000. Monitoring runs only while the Logs tab is
+                active.
+              </li>
+              <li>
+                Logs can contain local paths or account identifiers. Review them
+                before sharing publicly.
+              </li>
+            </ul>
+          </article>
+        </section>
+
         <section class="section">
           <div class="section-head">
             <h2>Runtime data locations</h2>
@@ -153,11 +302,19 @@
               <li>%APPDATA%\Achievements\configs</li>
               <li>%APPDATA%\Achievements\configs\schema</li>
               <li>%APPDATA%\Achievements\images</li>
+              <li>%USERPROFILE%\Pictures\Achievements Screenshots</li>
+              <li>%USERPROFILE%\Videos\Achievements Records</li>
               <li>%APPDATA%\Achievements\ach_cache</li>
+              <li>%APPDATA%\Achievements\ach_cache\github-releases.json</li>
               <li>%APPDATA%\Achievements\ach_cache_meta.json</li>
               <li>%APPDATA%\Achievements\logs</li>
               <li>%APPDATA%\Achievements\playtime-totals.json</li>
               <li>%APPDATA%\Achievements\preferences.json</li>
+              <li>%APPDATA%\Achievements\preferences.json.bak</li>
+              <li>%APPDATA%\Achievements\xbox-pc-microsoft-auth.enc</li>
+              <li>%APPDATA%\Achievements\xbox-pc\titles</li>
+              <li>%APPDATA%\Achievements\retroachievements-auth.enc</li>
+              <li>%APPDATA%\Achievements\retroachievements\titles</li>
             </ul>
           </div>
         </section>

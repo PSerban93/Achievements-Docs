@@ -171,21 +171,16 @@
               </p>
               <span class="card-cta">Jump to section</span>
             </a>
-            <a class="card card-link" href="#gse-roschach96">
-              <h3>GSE Roschach96</h3>
-              <p>Semi-auto ColdClient flow from the game folder.</p>
+            <a class="card card-link" href="#achievement-enabler">
+              <h3>Achievement Enabler</h3>
+              <p>
+                One auto-detected setup flow for Steam, Ubisoft, Epic, and GOG.
+              </p>
               <span class="card-cta">Jump to section</span>
             </a>
             <a class="card card-link" href="#uplay-goldberg">
               <h3>Uplay Goldberg</h3>
               <p>Steam AppID based schema generation for Ubisoft games.</p>
-              <span class="card-cta">Jump to section</span>
-            </a>
-            <a class="card card-link" href="#uplay-roschach96">
-              <h3>Uplay Roschach96</h3>
-              <p>
-                Semi-auto Goldberg Uplay flow through the bundled batch setup.
-              </p>
               <span class="card-cta">Jump to section</span>
             </a>
             <a class="card card-link" href="#uplay-lumaplay">
@@ -205,7 +200,9 @@
             </a>
             <a class="card card-link" href="#gog-universelan">
               <h3>GOG UniverseLAN</h3>
-              <p>Galaxy DLL replacement with local Achievements.ini output.</p>
+              <p>
+                Global ProductID storage and supported legacy game-local setup.
+              </p>
               <span class="card-cta">Jump to section</span>
             </a>
             <a class="card card-link" href="#nemirtingas-epic-emu">
@@ -443,6 +440,11 @@
                 and the achievement table is populated and stable.
               </li>
               <li>
+                If a game has only <code>Storage</code> data and no
+                <code>Gameplay\&lt;userId&gt;\gameplay.db</code>, the install is
+                detected but config generation waits for the gameplay database.
+              </li>
+              <li>
                 Runtime progress is read from <code>gameplay.db</code> even
                 though the saved config points to the concrete gameplay folder.
               </li>
@@ -465,10 +467,29 @@
                 cache files exist.
               </li>
               <li>
-                The app generates local schema, rarity sidecar, images, and a
+                The app detects
+                <code>spool\&lt;userId&gt;\&lt;productId&gt;.spool</code>, generates
+                local schema, rarity sidecar, and images from Ubisoft's local
+                achievements cache, then creates a
                 <code>ubisoft-official</code> config automatically.
               </li>
             </ol>
+            <h3>Important notes</h3>
+            <ul class="clean-list">
+              <li>
+                <code>ubisoft-official</code> is generated from a manually
+                watched spool root and is not meant to be created manually.
+              </li>
+              <li>
+                Config generation waits until both the spool file and local
+                achievement archive are available.
+              </li>
+              <li>
+                The config points to the concrete
+                <code>spool\&lt;userId&gt;</code> folder while runtime progress is
+                read from <code>&lt;productId&gt;.spool</code>.
+              </li>
+            </ul>
           </div>
         </section>
 
@@ -491,6 +512,25 @@
                 <code>ea-official</code> config, and monitors later log changes.
               </li>
             </ol>
+            <h3>Important notes</h3>
+            <ul class="clean-list">
+              <li>
+                <code>ea-official</code> is generated from a manually watched
+                EA Desktop logs root and is not meant to be created manually.
+              </li>
+              <li>
+                Config generation waits until EA Desktop logs a complete
+                achievement set for the game.
+              </li>
+              <li>
+                The config points to the EA Desktop <code>Logs</code> folder;
+                runtime progress is read from <code>EADesktopVerbose.log</code>.
+              </li>
+              <li>
+                The app also reads <code>EADesktopVerbose.bak</code>, preventing
+                achievement events from being lost when the verbose log rotates.
+              </li>
+            </ul>
           </div>
         </section>
 
@@ -563,62 +603,78 @@ password</code></pre>
           </div>
         </section>
 
-        <section class="section anchor-target" id="gse-roschach96">
+        <section class="section anchor-target" id="achievement-enabler">
           <div class="panel">
-            <h2>GSE Roschach96 method</h2>
+            <h2>Achievement Enabler by Roschach96</h2>
             <ol class="steps">
               <li>
-                Download Roschach96's
+                Download the latest
                 <a
-                  href="https://cs.rin.ru/forum/viewtopic.php?p=3447840#p3447840"
+                  href="https://cs.rin.ru/forum/viewtopic.php?p=3581127#p3581127"
                   target="_blank"
                   rel="noopener noreferrer"
-                  ><code>ColdClient semi-auto from Game Folder</code></a
+                  ><code>Achievement Enabler</code></a
                 >
-                release and copy it into the game's main folder. Use clean Steam
-                files.
+                release and extract the ZIP into a separate working folder.
               </li>
               <li>
-                Extract in place and run
-                <code>_goldberg_auto_setup_from_game_folder.bat</code>.
+                For Steam and Ubisoft, rename
+                <code>dummy_account.txt.example</code> to
+                <code>dummy_account.txt</code> and enter the credentials for a
+                throwaway Steam account. GOG and Epic do not require this file.
               </li>
               <li>
-                Create <code>dummy_account.txt</code> in that folder and save
-                your Steam account as:
-                <pre><code>username
-password</code></pre>
+                Keep a backup of the extracted release. The setup removes its
+                script-related files from the game folder after it finishes.
               </li>
               <li>
-                Enter the Steam AppID and let the script finish the setup.
+                Copy all extracted script files and folders into the game's main
+                folder.
               </li>
               <li>
-                When the script reports <code>DONE</code>, Achievements should
-                detect the generated config using the searched game name.
+                Run <code>_Achievement_Enabler.bat</code> and follow the
+                prompts. This is the only script that must be launched.
               </li>
             </ol>
-            <p class="note">
-              For ColdClient files updates, download Roschach96's
-              <a
-                href="https://cs.rin.ru/forum/viewtopic.php?p=3447840#p3447840"
-                target="_blank"
-                rel="noopener noreferrer"
-                ><code>ColdClient Updater</code></a
-              >.
-            </p>
-            <div class="media-frame">
-              <a
-                class="media-link"
-                href="https://github.com/PSerban93/Achievements-Docs/releases/download/v1.0/GSE_Roschach96.gif"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <img
-                  src="https://github.com/PSerban93/Achievements-Docs/releases/download/v1.0/GSE_Roschach96.gif"
-                  alt="GSE Roschach96 method"
-                  loading="lazy"
-                />
-              </a>
-            </div>
+            <h3>Account file example</h3>
+            <pre><code>username
+password</code></pre>
+            <h3>How the unified setup works</h3>
+            <ul class="clean-list">
+              <li>
+                The script detects the appropriate adapter from the files in the
+                game folder. Steam ColdClient is used as the fallback when no
+                other adapter loader is detected.
+              </li>
+              <li>
+                Steam and Ubisoft need their additional adapter asset files.
+                Use the files and version information supplied with the current
+                Achievement Enabler release.
+              </li>
+              <li>
+                The setup performs crack-state checks, finds or confirms the
+                Steam AppID, retrieves achievement data, checks launch
+                arguments, generates the platform configuration, exports the
+                game to Achievements, creates a desktop shortcut, and cleans up
+                its temporary script files.
+              </li>
+              <li>
+                For Ubisoft Uplay R1/R2, the matching loader and INI files must
+                already be present. If they are missing, setup stops and asks
+                you to apply the required adapter files before running it again.
+              </li>
+              <li>
+                For Steam ColdClient, choose either clean Steam files or the
+                <code>voices38</code> release flow when prompted. If
+                <code>voices38.dll</code> is already present before setup, the
+                safety check stops and asks for a clean reinstall before retrying.
+              </li>
+              <li>
+                The generated JokerVerse config includes the detected
+                executable and process information so Achievements can use it
+                for launch, selection, and playtime monitoring.
+              </li>
+            </ul>
           </div>
         </section>
 
@@ -714,36 +770,6 @@ password</code></pre>
                 />
               </a>
             </div>
-          </div>
-        </section>
-
-        <section class="section anchor-target" id="uplay-roschach96">
-          <div class="panel">
-            <h2>Uplay Roschach96 method</h2>
-            <ol class="steps">
-              <li>
-                Download Roschach96's
-                <a
-                  href="https://cs.rin.ru/forum/viewtopic.php?p=3475389#p3475389"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  ><code>GSE Uplay R2 semi-auto AW Joker combined</code></a
-                >.
-              </li>
-              <li>
-                Create <code>dummy_account.txt</code> in that folder and save
-                your Steam account as:
-                <pre><code>username
-password</code></pre>
-              </li>
-              <li>
-                Run
-                <code
-                  >_goldberg_uplay_r2_semi-auto_setup_aw_joker_combined.bat</code
-                >.
-              </li>
-              <li>Follow the prompts to complete the setup.</li>
-            </ol>
           </div>
         </section>
 
@@ -926,30 +952,52 @@ Achievement_4 = Only You - Successfully complete the First Trial (Solo Campaign 
         <section class="section anchor-target" id="gog-universelan">
           <div class="panel">
             <h2>GOG UniverseLAN</h2>
+            <h3>Current global storage layout</h3>
             <ol class="steps">
               <li>
-                Check which <code>galaxy64.dll</code> version the game uses.
+                Install and configure UniverseLAN so its game data is stored
+                under <code>%LOCALAPPDATA%\UniverseLAN</code>.
               </li>
               <li>
-                Find and download the matching UniverseLAN build from its GitHub
-                releases.
+                Keep each game in an immediate ProductID directory:
+                <code>%LOCALAPPDATA%\UniverseLAN\&lt;ProductID&gt;</code>.
               </li>
               <li>
-                Extract the files into the game folder and replace the existing
-                <code>galaxy64.dll</code>.
+                Runtime progress must be available at
+                <code
+                  >%LOCALAPPDATA%\UniverseLAN\&lt;ProductID&gt;\UniverseLANData\Achievements.ini</code
+                >.
               </li>
               <li>
-                Run <code>UniverseLANServer64.exe</code>, keep it open, then
+                The default watched root is treated as a strict GOG source. The
+                app maps each immediate ProductID directory to a GOG config and
+                monitors its <code>Achievements.ini</code> file.
+              </li>
+            </ol>
+            <h3>Legacy game-local setup</h3>
+            <p>
+              Existing game-local UniverseLAN installations remain supported.
+              Keep this setup if the game already works with the legacy layout.
+            </p>
+            <ol class="steps">
+              <li>
+                Check which <code>galaxy64.dll</code> version the game uses,
+                download the matching UniverseLAN build, and extract it into
+                the game folder.
+              </li>
+              <li>
+                Run <code>UniverseLANServer64.exe</code>, keep it open, and then
                 launch the game executable.
               </li>
               <li>
-                UniverseLAN generates local achievements in
+                The legacy installation generates local achievements in
                 <code>&lt;gamefolder&gt;\UniverseLANData\Achievements.ini</code
                 >.
               </li>
               <li>
-                Add the game folder to <strong>Watched Folders</strong> so the
-                app can detect the AppID and generate the config.
+                Add the game folder to <strong>Watched Folders</strong>. Legacy
+                discovery continues to use <code>UniverseLAN.ini</code> to
+                identify and generate the config.
               </li>
             </ol>
           </div>
@@ -1178,6 +1226,14 @@ start /b "Alan Wake 2" "AlanWake2.exe" -AUTH_LOGIN=unused -AUTH_PASSWORD=cdcdcdc
                 <code
                   >%APPDATA%\shadPS4\home\&lt;userId&gt;\trophy\&lt;NPWR&gt;.xml</code
                 >.
+              </li>
+              <li>
+                Local ShadPS4 logs or legacy data are used to map NPWR trophy
+                IDs to CUSA game IDs when that mapping is available.
+              </li>
+              <li>
+                All local user progress XML files for the selected game are
+                monitored so user switches are detected automatically.
               </li>
             </ol>
             <h3>Important notes</h3>

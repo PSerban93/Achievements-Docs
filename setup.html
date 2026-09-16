@@ -135,6 +135,35 @@
 
         <section class="section">
           <div class="section-head">
+            <h2>Open an existing config from the command line</h2>
+          </div>
+          <div class="panel">
+            <p>
+              Pass both the AppID and platform to the installed or unpacked
+              executable to open an existing config directly:
+            </p>
+            <pre><code>Achievements.exe --appid=239140/steam
+Achievements.exe --appid=239140 --platform=steam</code></pre>
+            <ul class="clean-list">
+              <li>Both formats are supported and equivalent.</li>
+              <li>
+                If Achievements is already running, the existing instance opens
+                and navigates to the matching config.
+              </li>
+              <li>
+                AppID and platform must exactly match an existing config. These
+                arguments do not generate a config or launch the game.
+              </li>
+              <li>
+                Supported platform values are the same values listed in the
+                <strong>Config JSON reference</strong> below.
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-head">
             <h2>First-run onboarding</h2>
           </div>
           <div class="panel">
@@ -158,8 +187,15 @@
                 and mutes the discovered or default auto-config roots.
               </li>
               <li>
+                Folder watchers and boot auto-config scans remain deferred while
+                onboarding is pending, preventing unwanted config generation.
+              </li>
+              <li>
                 Onboarding state is stored in
-                <code>%APPDATA%\Achievements\preferences.json</code>.
+                <code>%APPDATA%\Achievements\preferences.json</code> using
+                <code>autoConfigOnboardingCompleted</code>,
+                <code>autoConfigOnboardingVersion</code>, and
+                <code>autoConfigOnboardingCompletedAt</code>.
               </li>
               <li>
                 If startup is still gated but the modal is hidden, use tray
@@ -321,6 +357,81 @@
               <li>%APPDATA%\Steam\CODEX</li>
               <li>%APPDATA%\SmartSteamEmu</li>
               <li>%LOCALAPPDATA%\SKIDROW</li>
+              <li>%LOCALAPPDATA%\UniverseLAN</li>
+            </ul>
+            <p class="note">
+              <code>Goldberg UplayEmu Saves</code> and
+              <code>R1 UplayEmu Saves</code> use the Uplay-to-Steam mapping
+              while retaining the original Uplay AppID and schema storage.
+              <code>%LOCALAPPDATA%\UniverseLAN</code> is treated as a strict GOG
+              root; see the UniverseLAN platform guide for its layout.
+            </p>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-head">
+            <h2>Folder rescan and blacklist</h2>
+          </div>
+          <div class="panel">
+            <ul class="clean-list">
+              <li>
+                <strong>Folders - Rescan</strong> opens a modal containing the
+                active watched folders. Use <strong>Select All</strong> or
+                <strong>Deselect All</strong>, then scan only the selected roots.
+              </li>
+              <li>
+                Ignored folders and nested ignored folders remain excluded even
+                when their parent watched folder is selected.
+              </li>
+              <li>
+                Rescan does not clear the folder ignore list or the AppID
+                blacklist.
+              </li>
+              <li>
+                Ignoring a configured game uses its AppID and platform identity,
+                so the same AppID on another platform can remain active.
+              </li>
+              <li>
+                <strong>Settings - Advanced - Add Blacklisted AppIDs</strong>
+                accepts multiple AppIDs, including incorrectly detected user
+                IDs. Separate values with commas, spaces, or new lines.
+              </li>
+              <li>
+                <strong>Reset Blacklist</strong> removes global and
+                platform-specific blacklist entries without removing watched
+                folders or rescanning unrelated configs.
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-head">
+            <h2>Steam emulator progress files</h2>
+          </div>
+          <div class="panel">
+            <ul class="clean-list">
+              <li>
+                Online-Fix unlock state comes from
+                <code>Achievements.ini</code>. <code>Stats.ini</code> supplies
+                only mapped achievement progress and progress notifications.
+              </li>
+              <li>
+                An empty Online-Fix <code>Stats.ini</code> remains monitored. It
+                does not unlock achievements or clear the current cache; later
+                stat values are applied when written.
+              </li>
+              <li>
+                Tenoke reads unlock state and stats from
+                <code>user_stats.ini</code>. Stats map to schema progress rules
+                through the achievement <code>operand1</code> value when
+                available.
+              </li>
+              <li>
+                Stats never unlock achievements by themselves. The emulator's
+                achievement state remains the source of truth.
+              </li>
             </ul>
           </div>
         </section>
