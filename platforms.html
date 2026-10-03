@@ -468,9 +468,9 @@
               </li>
               <li>
                 The app detects
-                <code>spool\&lt;userId&gt;\&lt;productId&gt;.spool</code>, generates
-                local schema, rarity sidecar, and images from Ubisoft's local
-                achievements cache, then creates a
+                <code>spool\&lt;userId&gt;\&lt;productId&gt;.spool</code>,
+                generates local schema, rarity sidecar, and images from
+                Ubisoft's local achievements cache, then creates a
                 <code>ubisoft-official</code> config automatically.
               </li>
             </ol>
@@ -486,8 +486,8 @@
               </li>
               <li>
                 The config points to the concrete
-                <code>spool\&lt;userId&gt;</code> folder while runtime progress is
-                read from <code>&lt;productId&gt;.spool</code>.
+                <code>spool\&lt;userId&gt;</code> folder while runtime progress
+                is read from <code>&lt;productId&gt;.spool</code>.
               </li>
             </ul>
           </div>
@@ -515,8 +515,8 @@
             <h3>Important notes</h3>
             <ul class="clean-list">
               <li>
-                <code>ea-official</code> is generated from a manually watched
-                EA Desktop logs root and is not meant to be created manually.
+                <code>ea-official</code> is generated from a manually watched EA
+                Desktop logs root and is not meant to be created manually.
               </li>
               <li>
                 Config generation waits until EA Desktop logs a complete
@@ -647,8 +647,8 @@ password</code></pre>
                 other adapter loader is detected.
               </li>
               <li>
-                Steam and Ubisoft need their additional adapter asset files.
-                Use the files and version information supplied with the current
+                Steam and Ubisoft need their additional adapter asset files. Use
+                the files and version information supplied with the current
                 Achievement Enabler release.
               </li>
               <li>
@@ -667,12 +667,13 @@ password</code></pre>
                 For Steam ColdClient, choose either clean Steam files or the
                 <code>voices38</code> release flow when prompted. If
                 <code>voices38.dll</code> is already present before setup, the
-                safety check stops and asks for a clean reinstall before retrying.
+                safety check stops and asks for a clean reinstall before
+                retrying.
               </li>
               <li>
-                The generated JokerVerse config includes the detected
-                executable and process information so Achievements can use it
-                for launch, selection, and playtime monitoring.
+                The generated JokerVerse config includes the detected executable
+                and process information so Achievements can use it for launch,
+                selection, and playtime monitoring.
               </li>
             </ul>
           </div>
@@ -982,8 +983,8 @@ Achievement_4 = Only You - Successfully complete the First Trial (Solo Campaign 
             <ol class="steps">
               <li>
                 Check which <code>galaxy64.dll</code> version the game uses,
-                download the matching UniverseLAN build, and extract it into
-                the game folder.
+                download the matching UniverseLAN build, and extract it into the
+                game folder.
               </li>
               <li>
                 Run <code>UniverseLANServer64.exe</code>, keep it open, and then
@@ -1076,11 +1077,30 @@ start /b "Alan Wake 2" "AlanWake2.exe" -AUTH_LOGIN=unused -AUTH_PASSWORD=cdcdcdc
             <h2>anadius Origin/EA Emu</h2>
             <ol class="steps">
               <li>
-                Get anadius Origin emulator tools, including
-                <code>example config + tools.7z</code> and
-                <code>get_token.exe</code>.
+                Get anadius Origin emulator tools, including<a
+                  href="https://cs.rin.ru/forum/viewtopic.php?f=29&t=115335&hilit=Origin+emulator"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <code>example config + tools.7z</code></a
+                >
+                and
+                <a
+                  href="https://cs.rin.ru/forum/viewtopic.php?t=153179"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  ><code>get_token.exe</code></a
+                >.
               </li>
-              <li>Install the Tampermonkey browser extension.</li>
+              <li>
+                Install the
+                <a
+                  href="https://chromewebstore.google.com/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=en "
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  ><code>Tampermonkey browser extension</code></a
+                >.
+              </li>
               <li>
                 Drag <code>Origin Helper.user.js</code> from
                 <code>example config + tools</code> into Tampermonkey.
