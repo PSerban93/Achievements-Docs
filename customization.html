@@ -20,7 +20,7 @@
         <nav class="nav" data-nav>
           <a href="index.html" data-nav-id="home">Overview</a>
           <a href="setup.html" data-nav-id="setup">Setup</a>
-          <a href="platforms.html" data-nav-id="platforms">Platforms</a>
+          <a href="platforms.html" data-nav-id="platforms">Guides</a>
           <a href="customization.html" data-nav-id="customization"
             >Customization</a
           >
@@ -61,6 +61,10 @@
                 restore ignored games.
               </li>
               <li>
+                The platform filter includes PC Ports, Xbox 360 Recomp, PS4
+                Recomp, and KytyPS5 after their configs are generated.
+              </li>
+              <li>
                 Use the play button for games with configured executables.
               </li>
               <li>
@@ -90,8 +94,72 @@
         </section>
 
         <section class="section">
+          <div class="section-head">
+            <h2>Dashboard Collections</h2>
+            <p>
+              Group configured games into reusable collection cards without
+              moving or duplicating their config files.
+            </p>
+          </div>
+          <div class="card-grid">
+            <article class="card">
+              <h3>Choose the Dashboard view</h3>
+              <ul class="clean-list">
+                <li>
+                  <strong>Configs Only</strong> displays individual game cards.
+                </li>
+                <li>
+                  <strong>Collections Only</strong> displays collection cards.
+                </li>
+                <li>
+                  <strong>Collections and Configs</strong> displays both in the
+                  same Dashboard.
+                </li>
+              </ul>
+            </article>
+
+            <article class="card">
+              <h3>Create and customize</h3>
+              <p>
+                Select <strong>Create Collection</strong>, enter a unique name,
+                choose its colour, and optionally choose a local image. Without
+                a custom image, the collection uses its colour and default
+                folder icon. The preview updates before the collection is
+                created.
+              </p>
+            </article>
+
+            <article class="card">
+              <h3>Add games</h3>
+              <p>
+                Select one or more game cards with <code>Ctrl + Click</code>, or
+                open a game's context menu, then choose
+                <strong>Add to Collection</strong>. Apply the membership changes
+                to add the selected games to one or more collections.
+              </p>
+            </article>
+
+            <article class="card">
+              <h3>Browse and manage</h3>
+              <p>
+                Open a collection card to view its games, or use the collection
+                filter. <strong>Manage Collections</strong> and the collection
+                context menu allow you to rename it, change its colour, choose
+                or remove its image, manage membership, or delete the
+                collection. Deleting a collection does not delete its game
+                configs.
+              </p>
+            </article>
+          </div>
+          <p class="note">
+            Collections store references to configs by config name, AppID, and
+            platform rather than moving or copying the underlying configs.
+          </p>
+        </section>
+
+        <section class="section">
           <article class="panel">
-            <h2>Customization</h2>
+            <h2>General preferences</h2>
             <ul class="clean-list">
               <li>Choose notification preset and screen position.</li>
               <li>
@@ -188,6 +256,344 @@
                 </a>
               </div>
             </div>
+          </article>
+        </section>
+
+        <section class="section">
+          <div class="section-head">
+            <p class="eyebrow">Settings → Customisation</p>
+            <h2>Theme Customisation</h2>
+            <p>
+              Create an application theme from any installed theme while
+              keeping the original theme unchanged.
+            </p>
+          </div>
+          <div class="card-grid">
+            <article class="card">
+              <h3>Start and preview</h3>
+              <ul class="clean-list">
+                <li>
+                  Choose a theme under <strong>Start from</strong>, then enter a
+                  unique <strong>Custom theme name</strong>.
+                </li>
+                <li>
+                  Every colour, transparency, and corner change is shown in the
+                  live preview before it is saved.
+                </li>
+                <li>
+                  The preview includes cards, inputs, dropdown states, badges,
+                  panels, and a modal dialog so contrast can be checked across
+                  the interface.
+                </li>
+              </ul>
+            </article>
+
+            <article class="card">
+              <h3>Backgrounds and surfaces</h3>
+              <p>
+                Customize the application background, secondary surface,
+                panels and modal dialogs, raised panels, cards and card
+                footers, inputs, image fallbacks, and the window backdrop.
+                Transparency can be adjusted independently for each colour.
+              </p>
+            </article>
+
+            <article class="card">
+              <h3>Text and accents</h3>
+              <p>
+                Set primary and secondary text, primary and secondary accents,
+                and the colours used for success, warning, error, attention,
+                and highlighted content.
+              </p>
+            </article>
+
+            <article class="card">
+              <h3>Controls and states</h3>
+              <p>
+                Customize borders, hover and focused-input states, plus the
+                background, border, text, hover, selected, focused, and disabled
+                states used by dropdown controls and their options.
+              </p>
+            </article>
+
+            <article class="card">
+              <h3>Corner shape</h3>
+              <p>
+                Adjust corner radii independently for small controls, buttons
+                and inputs, cards, large cards, panels and modal dialogs, and
+                pill-shaped controls.
+              </p>
+            </article>
+
+            <article class="card">
+              <h3>Reset and save</h3>
+              <p>
+                <strong>Reset</strong> reloads the selected base theme and
+                discards the current draft. <strong>Save Theme</strong> creates
+                the custom theme, selects it as the active App Theme, and makes
+                it available with the other themes.
+              </p>
+            </article>
+          </div>
+          <p class="note">
+            Custom themes are stored in
+            <code>%APPDATA%\Achievements\Themes</code>. Saving from the editor
+            creates a user theme; it does not overwrite the bundled base theme.
+          </p>
+        </section>
+
+        <section class="section">
+          <div class="section-head">
+            <p class="eyebrow">Settings → Customisation</p>
+            <h2>Notification Customisation</h2>
+            <p>
+              Build a reusable notification preset with the actual Achievements
+              or SAN renderer, then select the saved result from the
+              Notifications tab.
+            </p>
+          </div>
+
+          <article class="panel">
+            <h3>Create or edit a preset</h3>
+            <ol class="steps">
+              <li>
+                Choose <strong>Achievements presets</strong> or
+                <strong>SAN presets</strong> under Preset format.
+              </li>
+              <li>
+                Select <strong>Existing preset</strong> to customize a local
+                preset, <strong>New</strong> to begin from a template, or
+                <strong>Random</strong> to generate a starting design.
+              </li>
+              <li>
+                Choose the source preset, enter a preset name, and edit only the
+                controls needed for the new design.
+              </li>
+              <li>
+                Check <strong>Normal unlock</strong>,
+                <strong>Rare unlock</strong>, and <strong>Platinum</strong> in
+                Live notification preview. Replay, pause, or resume its
+                animation as needed.
+              </li>
+              <li>
+                Use <strong>Test Preset</strong> to open the real notification
+                renderer with the values currently selected in Customisation.
+              </li>
+              <li>
+                Save the design. A user preset is added to the Notifications
+                tab; opening one of your saved presets again allows it to be
+                updated.
+              </li>
+            </ol>
+          </article>
+
+          <div class="card-grid">
+            <article class="card">
+              <h3>Achievements preset: colours and layout</h3>
+              <p>
+                Set primary and secondary colours, title and description
+                colours, border colour, a solid, gradient, local-image, or game
+                artwork background, cover transparency, blur, gradient angle,
+                width, height, scale, padding, content gap, corners, border
+                width, opacity, animation speed, and display time.
+              </p>
+            </article>
+
+            <article class="card">
+              <h3>Achievements preset: images</h3>
+              <p>
+                Resize, round, reposition, offset, replace, or hide the
+                achievement image. A custom logo and decoration can be chosen,
+                resized, positioned, offset, or hidden; installed preset logos
+                can also be reused.
+              </p>
+            </article>
+
+            <article class="card">
+              <h3>Achievements preset: text and rarity</h3>
+              <p>
+                Control title and description sizes, title weight, alignment,
+                casing, description line count, font family, custom font, and
+                description visibility. Rarity badges can be disabled, limited
+                to rare unlocks, or shown whenever rarity exists, with custom
+                placement, offsets, colours, and transparency.
+              </p>
+            </article>
+
+            <article class="card">
+              <h3>SAN preset: background and timing</h3>
+              <p>
+                Choose solid, gradient, local-image, or game-artwork
+                backgrounds; adjust three colours, angle, opacity, brightness,
+                image brightness, blur, masking, and use of the achievement
+                image as the background. Scale, corner shape, transition time,
+                and display time are preset-owned settings.
+              </p>
+            </article>
+
+            <article class="card">
+              <h3>SAN preset: artwork and text rows</h3>
+              <p>
+                Customize the achievement image, game image, logo, decoration,
+                image border, Bronze and Silver borders, Platinum image, and
+                hidden-achievement indicator. Arrange the unlock message,
+                title, and description rows; use default, custom, or game-name
+                text; and set shared or per-row fonts, sizes, and colours.
+              </p>
+            </article>
+
+            <article class="card">
+              <h3>Effects, rarity, and points</h3>
+              <p>
+                Configure borders, glow style and animation, glow offsets and
+                timing, text outline, and text shadow. Rarity can control icon
+                animation, glow, image borders, percentage text, and badges by
+                Bronze, Silver, or Gold. SAN points are calculated from rarity
+                and are not the game's actual XP or Gamerscore.
+              </p>
+            </article>
+          </div>
+
+          <p class="note">
+            The Normal, Rare, and Platinum previews are separate states. The
+            Rare Notification Threshold changes which unlocks use the Rare
+            style but does not change a platform's native trophy type. Custom
+            images and fonts are copied into the saved preset, so keep their
+            licensing and file size in mind.
+          </p>
+
+          <p class="note">
+            Achievements user presets are stored in
+            <code>%APPDATA%\Achievements\presets\Users Presets</code>; SAN
+            presets are stored in <code>%APPDATA%\Achievements\SANpresets</code>.
+            Bundled presets are used as sources and are not overwritten by the
+            editor.
+          </p>
+        </section>
+
+        <section class="section">
+          <div class="section-head">
+            <p class="eyebrow">Settings → Backup &amp; Restore</p>
+            <h2>Profile Backup &amp; Restore</h2>
+            <p>
+              Move the complete portable Achievements profile to another
+              installation or Windows account.
+            </p>
+          </div>
+          <div class="card-grid">
+            <article class="card">
+              <h3>Export a profile</h3>
+              <ol class="steps">
+                <li>
+                  Open <strong>Settings - Backup &amp; Restore</strong>.
+                </li>
+                <li>
+                  Select <strong>Export Backup</strong> and choose where to save
+                  the archive.
+                </li>
+                <li>
+                  Wait for the saved-path confirmation before closing the
+                  application.
+                </li>
+              </ol>
+              <p>
+                The archive is streamed as a TAR payload compressed with
+                Zstandard, so the complete profile does not need to be loaded
+                into memory first.
+              </p>
+            </article>
+
+            <article class="card">
+              <h3>Included data</h3>
+              <p>
+                Backups include configs, custom collections and their images,
+                achievement cache, covers and other images, notification
+                presets, sounds, themes, playtime, preferences, account-import
+                metadata, and the Dashboard summary.
+              </p>
+            </article>
+
+            <article class="card">
+              <h3>Inspect and restore</h3>
+              <ol class="steps">
+                <li>
+                  Select <strong>Import Backup</strong> and choose the archive.
+                </li>
+                <li>
+                  Review its creation date, application version, config, cache,
+                  and preset counts, and uncompressed size.
+                </li>
+                <li>
+                  Select <strong>Restore and Restart</strong> only after
+                  confirming that the current profile can be replaced.
+                </li>
+              </ol>
+            </article>
+
+            <article class="card">
+              <h3>Restore behavior</h3>
+              <p>
+                The restore is prepared in staging and applied before file
+                watchers start on the next launch. Achievement notifications
+                remain suppressed during migration. Internal profile paths and
+                Dashboard fingerprints are refreshed when the archive moves to
+                another Windows account or PC. Missing game save paths do not
+                prevent restored cached achievement data from being displayed.
+              </p>
+            </article>
+          </div>
+          <p class="note">
+            Restoring replaces the current Achievements profile and restarts
+            the application. Export an up-to-date backup before restoring if
+            the current profile may still be needed.
+          </p>
+          <p class="note">
+            Backup archives are <strong>not encrypted</strong> and can contain
+            sensitive settings, including the Steam Web API key. Store and
+            share them securely. Encrypted authentication-token files are
+            intentionally excluded, so Xbox PC, RetroAchievements, or other
+            connected services may require sign-in again after restoration.
+          </p>
+        </section>
+
+        <section class="section">
+          <article class="panel">
+            <h2>Trophy Mode and platform notifications</h2>
+            <ul class="clean-list">
+              <li>
+                Optional <strong>Trophy Mode</strong> classifies achievements as
+                Gold below 20% rarity, Silver from 20% to below 50%, and Bronze
+                from 50% upward.
+              </li>
+              <li>
+                Completing every achievement continues to use the dedicated
+                Platinum notification profile.
+              </li>
+              <li>
+                Trophy Mode colors the border around achievement icons in
+                notifications, the main achievement table, and the overlay.
+                Bronze, Silver, and Gold notifications use the Rare profile.
+              </li>
+              <li>
+                RPCS3, ShadPS4, KytyPS5, and PS4 Recomp retain their own preset,
+                sound, position, timing, and native trophy grades regardless of
+                Trophy Mode. Platinum keeps its dedicated profile.
+              </li>
+              <li>
+                Xenia, Xbox 360 Recomp, PC Ports, and other achievement-based
+                platforms follow the Trophy Mode preference.
+              </li>
+              <li>
+                Configure Xbox 360 Recomp, PS4 Recomp, and KytyPS5 through their
+                dedicated sections in the Notifications tab. Notification tests
+                use demonstration percentages.
+              </li>
+              <li>
+                Use <strong>Refresh Rarity</strong> on supported configs to retry
+                platform metadata and rarity percentages. Missing percentages
+                do not disable local unlock monitoring.
+              </li>
+            </ul>
           </article>
         </section>
 
@@ -309,6 +715,11 @@
               <li>%APPDATA%\Achievements\ach_cache_meta.json</li>
               <li>%APPDATA%\Achievements\logs</li>
               <li>%APPDATA%\Achievements\playtime-totals.json</li>
+              <li>%APPDATA%\Achievements\collections.json</li>
+              <li>%APPDATA%\Achievements\collection-images</li>
+              <li>%APPDATA%\Achievements\Themes</li>
+              <li>%APPDATA%\Achievements\presets\Users Presets</li>
+              <li>%APPDATA%\Achievements\SANpresets</li>
               <li>%APPDATA%\Achievements\preferences.json</li>
               <li>%APPDATA%\Achievements\preferences.json.bak</li>
               <li>%APPDATA%\Achievements\xbox-pc-microsoft-auth.enc</li>

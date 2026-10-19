@@ -20,7 +20,7 @@
         <nav class="nav" data-nav>
           <a href="index.html" data-nav-id="home">Overview</a>
           <a href="setup.html" data-nav-id="setup">Setup</a>
-          <a href="platforms.html" data-nav-id="platforms">Platforms</a>
+          <a href="platforms.html" data-nav-id="platforms">Guides</a>
           <a href="customization.html" data-nav-id="customization"
             >Customization</a
           >
@@ -190,6 +190,14 @@
               </p>
               <span class="card-cta">Jump to section</span>
             </a>
+            <a class="card card-link" href="#uplay-rune">
+              <h3>RUNE Ubisoft Connect</h3>
+              <p>
+                Opt-in watched-folder support for RUNE Ubisoft achievement
+                files.
+              </p>
+              <span class="card-cta">Jump to section</span>
+            </a>
             <a class="card card-link" href="#xlivelessness">
               <h3>XLiveLessNess</h3>
               <p>
@@ -219,8 +227,32 @@
             </a>
           </div>
           <div class="subsection-head">
+            <h3>PC Ports and Recompilations</h3>
+            <p>
+              Native PC ports and recompilation projects with local achievement
+              or trophy tracking.
+            </p>
+          </div>
+          <div class="card-grid">
+            <a class="card card-link" href="#pc-ports-ladxhd">
+              <h3>PC Ports: LADXHD</h3>
+              <p>Link's Awakening DX HD local achievement tracking.</p>
+              <span class="card-cta">Jump to section</span>
+            </a>
+            <a class="card card-link" href="#xbox-360-recomp">
+              <h3>Xbox 360 Recomp</h3>
+              <p>Supported recompilations, native ports, saves, and profiles.</p>
+              <span class="card-cta">Jump to section</span>
+            </a>
+            <a class="card card-link" href="#ps4-recomp">
+              <h3>PS4 Recomp</h3>
+              <p>Local trophy data and launcher log monitoring for PS4 ports.</p>
+              <span class="card-cta">Jump to section</span>
+            </a>
+          </div>
+          <div class="subsection-head">
             <h3>Console Emulators</h3>
-            <p>Xenia, RPCS3, and ShadPS4 native emulator flows.</p>
+            <p>Xenia, RPCS3, ShadPS4, and KytyPS5 native emulator flows.</p>
           </div>
           <div class="card-grid">
             <a class="card card-link" href="#xenia-canary">
@@ -236,6 +268,11 @@
             <a class="card card-link" href="#shadps4">
               <h3>ShadPS4</h3>
               <p>Modern and legacy trophy layouts, user-scoped caches.</p>
+              <span class="card-cta">Jump to section</span>
+            </a>
+            <a class="card card-link" href="#kytyps5">
+              <h3>KytyPS5</h3>
+              <p>PS5 trophy discovery for extracted games and ZArchives.</p>
               <span class="card-cta">Jump to section</span>
             </a>
           </div>
@@ -862,6 +899,42 @@ Achievement_4 = Only You - Successfully complete the First Trial (Solo Campaign 
           </div>
         </section>
 
+        <section class="section anchor-target" id="uplay-rune">
+          <div class="panel">
+            <h2>RUNE Ubisoft Connect support</h2>
+            <ol class="steps">
+              <li>
+                Start the Ubisoft game through RUNE at least once so its user
+                and achievement folders are created.
+              </li>
+              <li>
+                Open <strong>Settings - Folders</strong> and manually add
+                <code>%USERPROFILE%\Documents\RUNE\Ubisoft Connect</code> or
+                its <code>achievements</code> subfolder.
+              </li>
+              <li>
+                Confirm that the achievement file follows this structure:
+                <pre><code>&lt;root&gt;\achievements\&lt;UserID&gt;\&lt;Uplay AppID&gt;\achievements.cfg</code></pre>
+              </li>
+              <li>
+                Use <strong>Folders - Rescan</strong>. Achievements identifies
+                the Uplay AppID, resolves the existing Uplay schema and mapping,
+                and creates or refreshes the matching config.
+              </li>
+              <li>
+                Keep the folder watched so later changes to
+                <code>achievements.cfg</code> can refresh progress and produce
+                unlock notifications.
+              </li>
+            </ol>
+            <p class="note">
+              RUNE's sibling <code>savegames</code> tree is ignored. The RUNE
+              Ubisoft Connect location is intentionally not a default watched
+              folder and must remain an explicit opt-in.
+            </p>
+          </div>
+        </section>
+
         <section class="section anchor-target" id="xlivelessness">
           <div class="panel">
             <h2>XLiveLessNess support</h2>
@@ -1183,10 +1256,341 @@ start /b "Alan Wake 2" "AlanWake2.exe" -AUTH_LOGIN=unused -AUTH_PASSWORD=cdcdcdc
           </div>
         </section>
 
+        <section class="section anchor-target" id="pc-ports-ladxhd">
+          <div class="section-head">
+            <h2>PC Ports and Recompilations</h2>
+            <p>
+              Add the installed port folder to Settings, then let Achievements
+              discover its local schema and progress source.
+            </p>
+          </div>
+          <div class="panel">
+            <h2>PC Ports: LADXHD Updated</h2>
+            <ol class="steps">
+              <li>
+                Install <strong>Link's Awakening DX HD Updated</strong> using
+                the game's own instructions.
+              </li>
+              <li>
+                In <strong>Settings - Folders</strong>, add the installed game
+                folder containing <code>Link's Awakening DX HD.exe</code>,
+                <code>Data\Languages</code>, and
+                <code>Data\Achievements</code>. The patcher or launcher folder
+                alone is not sufficient.
+              </li>
+              <li>
+                Use <strong>Rescan</strong> if generation does not start. A
+                <strong>PC Ports</strong> config appears in the config selector
+                and Dashboard with the achievement list and icons.
+              </li>
+              <li>
+                Configure notifications through
+                <strong>Main Achievements</strong> in the Notifications tab.
+              </li>
+              <li>
+                Start the game and unlock an achievement. The save location is
+                monitored automatically, so no additional folder is required.
+              </li>
+            </ol>
+            <h3>Important notes</h3>
+            <ul class="clean-list">
+              <li>
+                Normal Windows installations store progress in
+                <code>%LOCALAPPDATA%\Zelda_LA\achievements</code>. Portable
+                installations use the <code>achievements</code> file inside the
+                game folder. Rescan after switching portable mode.
+              </li>
+              <li>
+                Progress is shared across save slots. Existing unlocks are
+                imported silently.
+              </li>
+              <li>
+                <strong>Refresh Rarity</strong> can add percentages from a
+                matching Exophase page. These describe the GBC/Retro player
+                population, not specifically players of the PC port. Missing
+                rarity does not prevent notifications.
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="section anchor-target" id="xbox-360-recomp">
+          <div class="panel">
+            <h2>Xbox 360 Recompilations and Native Ports</h2>
+            <ol class="steps">
+              <li>
+                Install the recompilation or native port and its required game
+                data using the port project's instructions.
+              </li>
+              <li>
+                Add the installed game folder in
+                <strong>Settings - Folders</strong>. Use the table below to
+                select the correct location.
+              </li>
+              <li>
+                Use <strong>Rescan</strong> if generation does not start. An
+                <strong>Xbox 360 Recomp</strong> config appears with the
+                available achievement list and icons.
+              </li>
+              <li>
+                Configure <strong>Xbox 360 Recomp Notification</strong> in the
+                Notifications tab.
+              </li>
+              <li>
+                If <strong>Game Profile</strong> is displayed below the config
+                controls, select the profile used by the game.
+              </li>
+              <li>
+                Start the game and unlock an achievement. Supported save paths,
+                including paths outside the installation folder, are monitored
+                automatically.
+              </li>
+            </ol>
+            <h3>Folders to add</h3>
+            <div class="table-wrap">
+              <table class="support-table">
+                <thead>
+                  <tr>
+                    <th>Game or port</th>
+                    <th>Folder required in Settings - Folders</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Dante's Inferno</td>
+                    <td>
+                      Folder containing <code>dantes_inferno.exe</code>,
+                      <code>dantes_inferno_native.exe</code>, or
+                      <code>dantesinferno.exe</code> and the game data.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>LEGO Dimensions</td>
+                    <td>
+                      Folder containing <code>legodimensions.exe</code> and the
+                      game data.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Midnight Club: Los Angeles</td>
+                    <td>
+                      Folder containing <code>midnightclubla.exe</code>,
+                      <code>mcla.exe</code>, or <code>larecomp.exe</code>. If it
+                      is under <code>out\build</code>, add the parent installation
+                      containing that directory and the game data.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Spider-Man: Edge of Time</td>
+                    <td>
+                      Folder containing <code>SpiderManEOT.exe</code> and the
+                      game data.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Blue Dragon (re:Blue)</td>
+                    <td>
+                      Final installation containing <code>reblue.exe</code>, the
+                      installed data, and <code>profiles</code>.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Gears of War 2 Hollow</td>
+                    <td>
+                      Folder containing <code>GearGame\SaveData</code>.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Unleashed Recompiled</td>
+                    <td>
+                      Folder containing <code>UnleashedRecomp.exe</code> and the
+                      game data.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Castlevania: Symphony of the Night (Nocturne)</td>
+                    <td>
+                      Folder containing <code>nocturnerecomp.exe</code> and the
+                      game's XEX. The XEX selects the US or Japanese version.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Silent Hill: Downpour</td>
+                    <td>
+                      Folder containing <code>downpour.exe</code> and the game
+                      data. Unlocks are monitored in <code>user</code>.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Deadly Premonition</td>
+                    <td>
+                      Folder containing <code>deadlyprem.exe</code> or
+                      <code>deadlyprem_usa.exe</code>. Unlocks are monitored in
+                      <code>userdata</code>.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Fable II (himdo)</td>
+                    <td>
+                      Folder containing <code>fable_2.exe</code>. Unlocks are
+                      monitored in the forced local <code>saves</code> folder.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Naughty Bear (ReStuff)</td>
+                    <td>
+                      Folder containing <code>restuff.exe</code>. The Documents
+                      save location is selected automatically.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Condemned 2: Bloodshot</td>
+                    <td>
+                      Folder containing <code>condemned2recomp.exe</code>.
+                      Unlocks are monitored in <code>UserData</code>.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Project Gotham Racing 4</td>
+                    <td>
+                      Folder containing <code>pgr4_recomp.exe</code> or
+                      <code>pgr4_recompiled.exe</code>. Its Documents path
+                      follows the executable's application name.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Crackdown 2</td>
+                    <td>
+                      Folder containing <code>crackdown2.exe</code> and a build
+                      with achievement persistence support.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Banjo-Kazooie: Nuts &amp; Bolts (reNut)</td>
+                    <td>
+                      Folder containing <code>renut.exe</code>. Complete the
+                      path setup wizard first; paths are read from
+                      <code>renut.cfg</code>.
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <h3>Important notes</h3>
+            <ul class="clean-list">
+              <li>
+                Use a build that persists achievement unlocks. Skate3Recomp
+                v2.0.2 can import its list, but cannot produce live notifications
+                because unlocks are not saved.
+              </li>
+              <li>
+                A config can be generated before the first unlock. If its source
+                is pending, unlock an achievement and rescan if necessary.
+              </li>
+              <li>
+                After initial import, use <strong>Folders - Rescan</strong> to
+                rebuild after profile, save-path, launcher-argument, metadata,
+                or icon changes.
+              </li>
+              <li>
+                ReXGlue ports use
+                <code>achievements\&lt;TitleID&gt;.toml</code> in the game's save
+                location. The file may appear only after an unlock.
+              </li>
+              <li>
+                A missing or invalid <code>renut.cfg</code> leaves reNut pending.
+                Complete its path wizard and rescan. Fable II always uses its
+                local <code>saves</code> folder.
+              </li>
+              <li>
+                Existing achievements are imported silently and each profile
+                keeps separate progress. Changing the unlock location also keeps
+                the previous location's progress separate.
+              </li>
+              <li>
+                Supported re:Blue builds include eight additional achievements.
+                Keep the port's full game data installed; a copied
+                <code>default.xex</code> alone is insufficient.
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="section anchor-target" id="ps4-recomp">
+          <div class="panel">
+            <h2>PS4 Recomp support</h2>
+            <p>
+              Compatible ports include Bloodborne, Uncharted: The Nathan Drake
+              Collection, God of War III Remastered, and MediEvil.
+            </p>
+            <ol class="steps">
+              <li>Install the port and the game data required by that port.</li>
+              <li>
+                Select the original game folder in the port launcher. Configure
+                any custom save folder there as well; Achievements follows the
+                launcher's stored location.
+              </li>
+              <li>
+                Add the port installation folder in
+                <strong>Settings - Folders</strong>. Keep the launcher and its
+                runtime files together. Adding only the original dump is not
+                sufficient.
+              </li>
+              <li>
+                Use <strong>Folders - Rescan</strong> if import does not start.
+                The imported game appears as a <strong>PS4 Recomp</strong>
+                config with its trophy list and icons.
+              </li>
+              <li>
+                Configure <strong>PS4 Recomp Notification</strong>, including
+                preset or SAN preset, sound, position, scale, and duration.
+              </li>
+              <li>
+                Start the game through its port launcher and keep launcher
+                logging enabled. Achievements reads the unlock log to update
+                progress and show notifications.
+              </li>
+            </ol>
+            <h3>Important notes</h3>
+            <ul class="clean-list">
+              <li>
+                Native Bronze, Silver, and Gold grades are preserved. Native
+                Platinum trophies use the dedicated Platinum notification;
+                lists without Platinum use generic completion at 100%.
+              </li>
+              <li>
+                Trophy lists and original icons are imported from the original
+                game's trophy files and <code>npbind.dat</code> using the
+                built-in public retail trophy key. Decrypted trophy data is also
+                supported. Use <strong>Folders - Rescan</strong> to update the
+                icons of an existing import.
+              </li>
+              <li>
+                A local <code>trophy.key</code> beside the launcher is optional.
+                When present, it overrides the built-in retail key.
+              </li>
+              <li>
+                Uncharted: The Nathan Drake Collection creates one config for
+                each game when all three trophy lists are available.
+              </li>
+              <li>
+                Import identifies compatible ports through <code>run.py</code>
+                and the port's identifying scripts or launcher assets. A runtime
+                executable is not required to generate the trophy list.
+              </li>
+              <li>
+                <strong>Play</strong> requires a valid launcher path. Process
+                detection uses the runtime declared by the port script or the
+                executable configured in <code>process_name</code>.
+              </li>
+            </ul>
+          </div>
+        </section>
+
         <section class="section anchor-target" id="xenia-canary">
           <div class="section-head">
             <h2>Console Emulators</h2>
-            <p>Xenia, RPCS3, and ShadPS4 native emulator flows.</p>
+            <p>Xenia, RPCS3, ShadPS4, and KytyPS5 native emulator flows.</p>
           </div>
           <div class="panel">
             <h2>Xenia-Canary support</h2>
@@ -1271,6 +1675,67 @@ start /b "Alan Wake 2" "AlanWake2.exe" -AUTH_LOGIN=unused -AUTH_PASSWORD=cdcdcdc
               </li>
               <li>
                 If multiple users exist, achievement caches are scoped per user.
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="section anchor-target" id="kytyps5">
+          <div class="panel">
+            <h2>KytyPS5 support</h2>
+            <ol class="steps">
+              <li>
+                Use the upstream KytyPS5 runtime that saves progress in
+                <code>_Trophies</code>. The U59 fork and SharpEmu are not
+                supported by this integration.
+              </li>
+              <li>
+                Register the folder containing the extracted game or its
+                <code>.zar</code> archive in the KytyPS5 launcher.
+              </li>
+              <li>
+                Add the emulator folder containing
+                <code>kyty_emulator.exe</code> in
+                <strong>Settings - Folders</strong>, then rescan.
+              </li>
+              <li>
+                A <strong>KytyPS5</strong> config appears with the trophy list
+                and icons. Games in registered launcher locations can be found
+                before the first unlock.
+              </li>
+              <li>
+                Configure <strong>KytyPS5 Notification</strong> in the
+                Notifications tab.
+              </li>
+              <li>
+                Start the game through KytyPS5 and unlock a trophy. Achievements
+                monitors the emulator's <code>_Trophies</code> folder even when
+                it is created only after the first unlock.
+              </li>
+            </ol>
+            <h3>Important notes</h3>
+            <ul class="clean-list">
+              <li>
+                Add new game locations through the KytyPS5 launcher and use
+                <strong>Rescan</strong> if a registered game does not appear.
+              </li>
+              <li>
+                Extracted games and <code>.zar</code> archives are supported.
+                Retail <code>.pkg</code> files are not supported directly.
+              </li>
+              <li>
+                Each game has one config per emulator installation, including
+                additional trophy sets. Progress is kept separately for each
+                KytyPS5 user and follows the active game or global emulator user.
+              </li>
+              <li>
+                Existing trophies are imported silently. Notifications are
+                generated only for the active user's new unlocks.
+              </li>
+              <li>
+                <strong>Refresh Rarity</strong> can add percentages from a
+                matching Exophase PS5 page. Missing rarity does not prevent
+                local trophy monitoring.
               </li>
             </ul>
           </div>

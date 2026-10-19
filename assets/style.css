@@ -265,6 +265,17 @@ body[data-page="home"] .section {
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
 
+.section:not(.split) > .panel + .panel,
+.section:not(.split) > .panel + .card-grid,
+.section:not(.split) > .panel + .media-frame,
+.section:not(.split) > .card-grid + .panel,
+.section:not(.split) > .card-grid + .card-grid,
+.section:not(.split) > .card-grid + .media-frame,
+.section:not(.split) > .media-frame + .panel,
+.section:not(.split) > .media-frame + .card-grid {
+  margin-top: 18px;
+}
+
 .card,
 .panel {
   border: 1px solid rgba(255, 255, 255, 0.05);
@@ -397,6 +408,42 @@ pre {
   background: var(--dracula-background);
   border: 1px solid var(--dracula-comment);
   color: var(--dracula-foreground);
+}
+
+.table-wrap {
+  margin-top: 18px;
+  overflow-x: auto;
+  border: 1px solid rgba(139, 233, 253, 0.16);
+  border-radius: 10px;
+}
+
+.support-table {
+  width: 100%;
+  min-width: 720px;
+  border-collapse: collapse;
+  background: rgba(40, 42, 54, 0.58);
+}
+
+.support-table th,
+.support-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  text-align: left;
+  vertical-align: top;
+  line-height: 1.55;
+}
+
+.support-table th {
+  color: var(--dracula-foreground);
+  background: rgba(189, 147, 249, 0.14);
+}
+
+.support-table td {
+  color: var(--muted);
+}
+
+.support-table tr:last-child td {
+  border-bottom: 0;
 }
 
 .page-head,

@@ -20,7 +20,7 @@
         <nav class="nav" data-nav>
           <a href="index.html" data-nav-id="home">Overview</a>
           <a href="setup.html" data-nav-id="setup">Setup</a>
-          <a href="platforms.html" data-nav-id="platforms">Platforms</a>
+          <a href="platforms.html" data-nav-id="platforms">Guides</a>
           <a href="customization.html" data-nav-id="customization"
             >Customization</a
           >
@@ -273,7 +273,8 @@ Achievements.exe --appid=239140 --platform=steam</code></pre>
               <li>
                 <code>platform</code> – one of steam, steam-official, uplay,
                 ubisoft-official, ea-official, epic, epic-official, gog,
-                gog-official, xbox-pc, retroachievements, xenia, rpcs3, shadps4,
+                gog-official, xbox-pc, retroachievements, x360recomp,
+                ps4recomp, pcports, xenia, rpcs3, shadps4, kytyps5,
                 markerpatch, madnesspatch, or xlivelessness.
               </li>
               <li>
@@ -296,6 +297,13 @@ Achievements.exe --appid=239140 --platform=steam</code></pre>
             <p class="note">
               If <code>config_path</code> points to a custom location, schema
               regeneration and cleanup will not overwrite that folder.
+            </p>
+            <p class="note">
+              <code>pcports</code>, <code>x360recomp</code>,
+              <code>ps4recomp</code>, and <code>kytyps5</code> configs are
+              generated from supported folders through watched-folder discovery
+              and <strong>Rescan</strong>. They are not intended for manual
+              creation from the platform selector.
             </p>
           </article>
         </section>
@@ -371,6 +379,42 @@ Achievements.exe --appid=239140 --platform=steam</code></pre>
 
         <section class="section">
           <div class="section-head">
+            <h2>RUNE Ubisoft Connect saves</h2>
+            <p>
+              This integration is optional and must be added as a watched
+              folder manually.
+            </p>
+          </div>
+          <div class="panel">
+            <ol class="steps">
+              <li>
+                Open <strong>Settings - Folders</strong> and add either
+                <code>%USERPROFILE%\Documents\RUNE\Ubisoft Connect</code> or its
+                <code>achievements</code> subfolder.
+              </li>
+              <li>
+                Start the game once so RUNE creates
+                <code
+                  >&lt;root&gt;\achievements\&lt;UserID&gt;\&lt;Uplay
+                  AppID&gt;\achievements.cfg</code
+                >.
+              </li>
+              <li>
+                Use <strong>Folders - Rescan</strong> if the config is not
+                generated immediately.
+              </li>
+            </ol>
+            <p class="note">
+              Achievements sends this file through the existing Uplay schema
+              and AppID mapping flow. The sibling <code>savegames</code> tree is
+              ignored. This location is intentionally absent from the default
+              watched-folder list, so adding it manually is required.
+            </p>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-head">
             <h2>Folder rescan and blacklist</h2>
           </div>
           <div class="panel">
@@ -401,6 +445,37 @@ Achievements.exe --appid=239140 --platform=steam</code></pre>
                 <strong>Reset Blacklist</strong> removes global and
                 platform-specific blacklist entries without removing watched
                 folders or rescanning unrelated configs.
+              </li>
+              <li>
+                Automatic emulator discovery records confirmed missing IDs
+                separately for Steam, Uplay, GOG, and Epic. A generic scan skips
+                only the blacklisted provider and continues trying the other
+                applicable providers; a known source skips its own blacklisted
+                ID directly.
+              </li>
+              <li>
+                When a game is identified successfully but the provider
+                confirms that it has no achievements, discovery stops for that
+                game and its AppID is blacklisted only for the identified
+                platform.
+              </li>
+              <li>
+                A network, authentication, parser, or other technical failure
+                is not treated as proof that an AppID is invalid or that the
+                game has no achievements. Ambiguous identification is also not
+                a confirmed negative result.
+              </li>
+              <li>
+                An AppID becomes globally blacklisted only when every
+                applicable provider returns a confirmed negative result, with
+                no technical failures, ambiguity, or previously identified
+                game.
+              </li>
+              <li>
+                Automatically recorded lookup reasons are removed together
+                with their blacklist entries. Legacy entries that have no
+                recorded reason are never used as evidence for creating a
+                global blacklist entry.
               </li>
             </ul>
           </div>

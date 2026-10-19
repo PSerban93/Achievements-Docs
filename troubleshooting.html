@@ -20,7 +20,7 @@
         <nav class="nav" data-nav>
           <a href="index.html" data-nav-id="home">Overview</a>
           <a href="setup.html" data-nav-id="setup">Setup</a>
-          <a href="platforms.html" data-nav-id="platforms">Platforms</a>
+          <a href="platforms.html" data-nav-id="platforms">Guides</a>
           <a href="customization.html" data-nav-id="customization"
             >Customization</a
           >
@@ -147,6 +147,72 @@
               <li>
                 Avoid running multiple overlay or injector tools while
                 troubleshooting.
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-head">
+            <h2>PC ports and recompilations</h2>
+          </div>
+          <div class="panel">
+            <ul class="clean-list">
+              <li>
+                If an Xbox 360 Recomp config shows a pending unlock source,
+                start the game, unlock an achievement, and use
+                <strong>Folders - Rescan</strong> if the source is still not
+                detected.
+              </li>
+              <li>
+                Use a port build that persists achievement state. A build can
+                expose an achievement list without saving unlocks, in which case
+                live notifications are not possible.
+              </li>
+              <li>
+                Rescan after changing an Xbox 360 recompilation's profile, save
+                path, launcher arguments, or game-location configuration.
+              </li>
+              <li>
+                PS4 Recomp imports lists and icons from the original trophy
+                files and <code>npbind.dat</code> with the built-in public retail
+                key. Decrypted trophy data is also supported. Use
+                <strong>Folders - Rescan</strong> when existing icons need to be
+                refreshed.
+              </li>
+              <li>
+                A local <code>trophy.key</code> is optional and should be placed
+                beside the launcher only when you need to override the built-in
+                retail key.
+              </li>
+              <li>
+                PS4 Recomp can generate its trophy list without the port's
+                runtime executable when <code>run.py</code> and its identifying
+                scripts or launcher assets are available. A valid launcher path
+                is still required for <strong>Play</strong>.
+              </li>
+              <li>
+                If automatic process detection fails, verify the runtime named
+                by the port script or set the correct executable in the config's
+                <code>process_name</code>.
+              </li>
+              <li>
+                Keep PS4 port launcher logging enabled. Without its unlock log,
+                progress and live notifications cannot update.
+              </li>
+              <li>
+                KytyPS5 requires the upstream runtime that writes
+                <code>_Trophies</code>. The U59 fork and SharpEmu are not
+                supported.
+              </li>
+              <li>
+                KytyPS5 accepts extracted games and <code>.zar</code> archives;
+                retail <code>.pkg</code> files cannot be imported directly.
+              </li>
+              <li>
+                When switching LADXHD between normal and portable storage,
+                rescan the installed game folder so monitoring follows the
+                correct achievement file.
               </li>
             </ul>
           </div>
