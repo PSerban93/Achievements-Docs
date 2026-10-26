@@ -537,6 +537,12 @@ body[data-page="home"] .content {
   min-height: 100vh;
 }
 
+body[data-page="home"] .content.has-page-toc {
+  display: grid;
+  min-height: 100vh;
+  justify-content: normal;
+}
+
 body[data-page="home"] .hero,
 body[data-page="home"] .section {
   width: min(100%, 940px);
@@ -546,6 +552,12 @@ body[data-page="home"] .section {
 
 body[data-page="home"] .section {
   margin-top: 24px;
+}
+
+body[data-page="home"] .mobile-toc {
+  width: min(100%, 940px);
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .hero,
@@ -921,6 +933,21 @@ mark {
   margin: 18px auto;
 }
 
+.media-frame--preview {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+}
+
+.media-frame--preview figcaption {
+  padding: 10px 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  color: var(--muted);
+  background: rgba(40, 42, 54, 0.52);
+  font-size: 0.8rem;
+  text-align: center;
+}
+
 .media-stack {
   display: grid;
   gap: 18px;
@@ -1190,6 +1217,10 @@ pre code {
 
 @media (max-width: 1240px) {
   .content.has-page-toc {
+    display: block;
+  }
+
+  body[data-page="home"] .content.has-page-toc {
     display: block;
   }
 

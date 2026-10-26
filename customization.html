@@ -52,6 +52,12 @@
               </li>
               <li>Click a game card to load its config.</li>
               <li>
+                Right-click selected achievement rows to use the
+                <a href="#manual-achievement-state"
+                  >manual unlock, lock, and backup actions</a
+                >.
+              </li>
+              <li>
                 Use <code>Ctrl + Click</code> or the card context menu to select
                 multiple games, then ignore, delete, or clear the selection from
                 the action bar.
@@ -61,8 +67,9 @@
                 restore ignored games.
               </li>
               <li>
-                The platform filter includes PC Ports, Xbox 360 Recomp, PS4
-                Recomp, and KytyPS5 after their configs are generated.
+                The platform filter includes PC Ports, Xbox 360 Recomp, PS3
+                Recomp, PS4 Recomp, and KytyPS5 after their configs are
+                generated.
               </li>
               <li>
                 Use the play button for games with configured executables.
@@ -91,6 +98,158 @@
               </a>
             </div>
           </article>
+        </section>
+
+        <section class="section anchor-target" id="manual-achievement-state">
+          <div class="section-head">
+            <h2>Manual achievement changes and backups</h2>
+            <p>
+              Apply local achievement overrides, reset supported local unlock
+              records, or restore the most recent matching safety backup.
+            </p>
+          </div>
+
+          <div class="panel">
+            <h3>Select achievements and open the actions</h3>
+            <ol class="steps">
+              <li>
+                Load the game config, then select one or more achievement rows.
+                Use <code>Ctrl + Click</code> to select individual rows or
+                <code>Shift + Click</code> to select a range.
+              </li>
+              <li>
+                Right-click the selection to open the available achievement
+                actions. The menu supports mouse, keyboard, and controller
+                navigation.
+              </li>
+              <li>
+                In the overlay, first enable <strong>interaction mode</strong>,
+                then right-click an achievement. Confirmation remains inside
+                the overlay and does not activate its window.
+              </li>
+              <li>
+                Review every confirmation carefully. Leaving interaction mode,
+                hiding the overlay, or switching configs cancels an open
+                confirmation.
+              </li>
+            </ol>
+          </div>
+
+          <div class="card-grid">
+            <article class="card">
+              <h3>Mark as Manually Unlocked</h3>
+              <p>
+                Adds a local manual unlock without editing the game's original
+                achievement file. Use <strong>Clear Manual Unlock</strong> to
+                remove that override.
+              </p>
+            </article>
+            <article class="card">
+              <h3>Mark as Manually Locked</h3>
+              <p>
+                Resets only the selected records in a supported local unlock
+                file and updates the app cache. Close the game first. The
+                confirmation lists every affected achievement and file, and a
+                backup is created before editing.
+              </p>
+            </article>
+            <article class="card">
+              <h3>Restore Last Achievement Backup</h3>
+              <p>
+                Available when a backup matches the selected config, source,
+                and profile. Restoration replaces the affected files and cache
+                with the backed-up state, including changes made after that
+                backup. Close the game and review the confirmation first.
+              </p>
+            </article>
+          </div>
+
+          <div class="panel">
+            <h3>Supported local state formats</h3>
+            <div class="table-wrap">
+              <table class="support-table">
+                <thead>
+                  <tr>
+                    <th>Local source</th>
+                    <th>Supported state formats</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Steam, Uplay, GOG, and Epic emulators</td>
+                    <td>
+                      Recognized achievement JSON and INI layouts, Tenoke
+                      <code>user_stats.ini</code>, RUNE Uplay
+                      <code>achievements.cfg</code>, and Steam
+                      <code>stats.bin</code>.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>RPCS3</td>
+                    <td>Selected trophy records in <code>TROPUSR.DAT</code>.</td>
+                  </tr>
+                  <tr>
+                    <td>shadPS4</td>
+                    <td>
+                      Trophy state in the selected user's XML or legacy
+                      <code>TROP*.XML</code> files.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Xenia</td>
+                    <td>Selected achievement flags and timestamps in GPD files.</td>
+                  </tr>
+                  <tr>
+                    <td>KytyPS5</td>
+                    <td>The selected user's trophy JSON and service label.</td>
+                  </tr>
+                  <tr>
+                    <td>Xbox 360 Recomp</td>
+                    <td>
+                      ReXGlue TOML, <code>EOTACH1</code> TSV, earned-only INI,
+                      achievement-state JSON, GPD, and validated
+                      <code>ACH-DATA</code> records.
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="panel">
+            <h3>Safety and recovery rules</h3>
+            <ul class="clean-list">
+              <li>
+                Availability depends on the detected state format. Unsupported
+                or ambiguous sources are never edited. Official account unlocks
+                and log-based ports are outside this feature.
+              </li>
+              <li>
+                Unselected records, definitions, images, game saves, and shared
+                stat counters are preserved.
+              </li>
+              <li>
+                Locking an achievement does not reset the game's own progress.
+                A game may unlock it again when an existing save already meets
+                the achievement condition.
+              </li>
+              <li>
+                Manual locking and backup restoration do not produce unlock
+                notifications, screenshots, or recordings. A later real unlock
+                follows the normal notification flow.
+              </li>
+              <li>
+                Backups are separated by config and source/profile identity in
+                <code>%APPDATA%\Achievements\achievement_backups</code>. If an
+                edit fails, the app attempts to roll it back and records the
+                recovery details in the logs.
+              </li>
+              <li>
+                A file changed externally during the operation is preserved
+                rather than overwritten by recovery.
+              </li>
+            </ul>
+          </div>
         </section>
 
         <section class="section">
@@ -575,18 +734,18 @@
                 Bronze, Silver, and Gold notifications use the Rare profile.
               </li>
               <li>
-                RPCS3, ShadPS4, KytyPS5, and PS4 Recomp retain their own preset,
-                sound, position, timing, and native trophy grades regardless of
-                Trophy Mode. Platinum keeps its dedicated profile.
+                RPCS3, ShadPS4, KytyPS5, PS3 Recomp, and PS4 Recomp retain their
+                own preset, sound, position, timing, and native trophy grades
+                regardless of Trophy Mode. Platinum keeps its dedicated profile.
               </li>
               <li>
                 Xenia, Xbox 360 Recomp, PC Ports, and other achievement-based
                 platforms follow the Trophy Mode preference.
               </li>
               <li>
-                Configure Xbox 360 Recomp, PS4 Recomp, and KytyPS5 through their
-                dedicated sections in the Notifications tab. Notification tests
-                use demonstration percentages.
+                Configure Xbox 360 Recomp, PS3 Recomp, PS4 Recomp, and KytyPS5
+                through their dedicated sections in the Notifications tab.
+                Notification tests use demonstration percentages.
               </li>
               <li>
                 Use <strong>Refresh Rarity</strong> on supported configs to retry
@@ -711,6 +870,7 @@
               <li>%USERPROFILE%\Pictures\Achievements Screenshots</li>
               <li>%USERPROFILE%\Videos\Achievements Records</li>
               <li>%APPDATA%\Achievements\ach_cache</li>
+              <li>%APPDATA%\Achievements\achievement_backups</li>
               <li>%APPDATA%\Achievements\ach_cache\github-releases.json</li>
               <li>%APPDATA%\Achievements\ach_cache_meta.json</li>
               <li>%APPDATA%\Achievements\logs</li>

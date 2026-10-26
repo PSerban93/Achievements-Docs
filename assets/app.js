@@ -112,6 +112,7 @@
         "anadius-origin-ea-emu": "helpers",
         "pc-ports-ladxhd": "ports",
         "xbox-360-recomp": "ports",
+        "ps3-recomp": "ports",
         "ps4-recomp": "ports",
         "xenia-canary": "console",
         rpcs3: "console",
@@ -457,11 +458,208 @@
     }
 
     const initialId = decodeURIComponent(window.location.hash.slice(1));
-    if (tocLinks.has(initialId)) setActiveGuide(initialId);
+    if (tocLinks.has(initialId)) {
+      setActiveGuide(initialId);
+      const initialTarget = guideData.find(({ id }) => id === initialId)?.target;
+      if (initialTarget) {
+        window.requestAnimationFrame(() => alignAnchorTarget(initialTarget));
+      }
+    }
+  };
+
+  const initPageIndex = () => {
+    if (page === "platforms") return;
+
+    const main = document.querySelector("main.content");
+    if (!main) return;
+
+    const entries = [];
+    const pageHeader = main.querySelector(":scope > .page-head, :scope > .hero");
+    if (pageHeader) {
+      entries.push({
+        target: pageHeader,
+        heading: pageHeader.querySelector("h1"),
+        label:
+          (page === "home"
+            ? "Overview"
+            : pageHeader.querySelector(".eyebrow")?.textContent.trim()) ||
+          "Overview",
+        preferredId: `${page || "page"}-overview`,
+      });
+    }
+
+    Array.from(main.querySelectorAll(":scope > .section")).forEach(
+      (section) => {
+        const sectionHeading = section.querySelector(
+          ":scope > .section-head > h2",
+        );
+        if (sectionHeading) {
+          entries.push({
+            target: section,
+            heading: sectionHeading,
+            label: sectionHeading.textContent.trim(),
+          });
+          return;
+        }
+
+        const panelHeadings = Array.from(
+          section.querySelectorAll(":scope > .panel > h2"),
+        );
+        if (panelHeadings.length) {
+          panelHeadings.forEach((heading) => {
+            entries.push({
+              target: heading.closest(".panel"),
+              heading,
+              label: heading.textContent.trim(),
+            });
+          });
+          return;
+        }
+
+        const heading = section.querySelector("h2");
+        if (heading) {
+          entries.push({
+            target: section,
+            heading,
+            label: heading.textContent.trim(),
+          });
+        } else if (page === "home") {
+          entries.push({
+            target: section,
+            heading: section,
+            label: "Documentation guides",
+            preferredId: "documentation-guides",
+          });
+        }
+      },
+    );
+
+    if (!entries.length) return;
+
+    const slugify = (value) =>
+      value
+        .normalize("NFKD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLocaleLowerCase()
+        .replace(/&/g, " and ")
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-|-$/g, "") || "section";
+
+    const usedIds = new Set(
+      Array.from(document.querySelectorAll("[id]"), (element) => element.id),
+    );
+    const pageData = entries.map((entry) => {
+      let id = entry.target.id;
+      if (!id) {
+        const base = slugify(entry.preferredId || entry.label);
+        id = base;
+        let suffix = 2;
+        while (usedIds.has(id)) {
+          id = `${base}-${suffix}`;
+          suffix += 1;
+        }
+        entry.target.id = id;
+        usedIds.add(id);
+      }
+      entry.target.classList.add("anchor-target");
+      return { ...entry, id };
+    });
+
+    const contentMain = document.createElement("div");
+    contentMain.className = "content-main";
+    Array.from(main.childNodes).forEach((node) => contentMain.append(node));
+
+    const toc = document.createElement("aside");
+    toc.className = "page-toc";
+    toc.setAttribute("aria-labelledby", "guides-index-title");
+    toc.innerHTML = `
+      <p class="eyebrow">Contents</p>
+      <h2 id="guides-index-title">On this page</h2>
+      <nav class="page-toc-links" aria-label="Page sections"></nav>
+    `;
+
+    const mobileToc = document.createElement("details");
+    mobileToc.className = "mobile-toc";
+    mobileToc.innerHTML = `
+      <summary>On this page <span aria-hidden="true">⌄</span></summary>
+      <nav class="mobile-toc-links" aria-label="Page sections on mobile"></nav>
+    `;
+
+    const tocLinks = new Map();
+    const desktopNav = toc.querySelector(".page-toc-links");
+    const mobileNav = mobileToc.querySelector(".mobile-toc-links");
+    pageData.forEach(({ id, label }) => {
+      const links = [desktopNav, mobileNav].map((container) => {
+        const link = document.createElement("a");
+        link.className = "page-toc-link";
+        link.href = `#${id}`;
+        link.textContent = label;
+        container.append(link);
+        return link;
+      });
+      tocLinks.set(id, links);
+    });
+
+    const headerInContent = contentMain.querySelector(
+      ":scope > .page-head, :scope > .hero",
+    );
+    if (headerInContent) headerInContent.insertAdjacentElement("afterend", mobileToc);
+    else contentMain.prepend(mobileToc);
+
+    main.classList.add("has-page-toc");
+    main.append(contentMain, toc);
+
+    setActiveGuide = (id) => {
+      tocLinks.forEach((links, linkId) => {
+        const active = linkId === id;
+        links.forEach((link) => {
+          link.classList.toggle("is-active", active);
+          if (active) link.setAttribute("aria-current", "location");
+          else link.removeAttribute("aria-current");
+        });
+      });
+    };
+
+    mobileToc.addEventListener("click", (event) => {
+      if (event.target.closest("a")) mobileToc.open = false;
+    });
+
+    const visibleHeadings = new Set();
+    const headingToId = new Map(
+      pageData.map(({ heading, target, id }) => [heading || target, id]),
+    );
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver(
+        (observerEntries) => {
+          observerEntries.forEach((entry) => {
+            if (entry.isIntersecting) visibleHeadings.add(entry.target);
+            else visibleHeadings.delete(entry.target);
+          });
+          const current = Array.from(visibleHeadings).sort(
+            (a, b) =>
+              Math.abs(a.getBoundingClientRect().top - 100) -
+              Math.abs(b.getBoundingClientRect().top - 100),
+          )[0];
+          if (current) setActiveGuide(headingToId.get(current));
+        },
+        { rootMargin: "-8% 0px -78%", threshold: 0 },
+      );
+      headingToId.forEach((_, heading) => observer.observe(heading));
+    }
+
+    const initialId = decodeURIComponent(window.location.hash.slice(1));
+    if (tocLinks.has(initialId)) {
+      setActiveGuide(initialId);
+      const initialTarget = pageData.find(({ id }) => id === initialId)?.target;
+      if (initialTarget) {
+        window.requestAnimationFrame(() => alignAnchorTarget(initialTarget));
+      }
+    }
   };
 
   initMobileNavigation();
   initGuidesIndex();
+  initPageIndex();
 
   const initCallouts = () => {
     document.querySelectorAll(".note").forEach((callout) => {

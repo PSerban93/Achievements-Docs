@@ -244,6 +244,14 @@
               <p>Supported recompilations, native ports, saves, and profiles.</p>
               <span class="card-cta">Jump to section</span>
             </a>
+            <a class="card card-link" href="#ps3-recomp">
+              <h3>PS3 Recomp</h3>
+              <p>
+                Local trophy schemas, icons, and native grades for PS3Recomp
+                ports.
+              </p>
+              <span class="card-cta">Jump to section</span>
+            </a>
             <a class="card card-link" href="#ps4-recomp">
               <h3>PS4 Recomp</h3>
               <p>Local trophy data and launcher log monitoring for PS4 ports.</p>
@@ -1518,6 +1526,61 @@ start /b "Alan Wake 2" "AlanWake2.exe" -AUTH_LOGIN=unused -AUTH_PASSWORD=cdcdcdc
                 Supported re:Blue builds include eight additional achievements.
                 Keep the port's full game data installed; a copied
                 <code>default.xex</code> alone is insufficient.
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="section anchor-target" id="ps3-recomp">
+          <div class="panel">
+            <h2>PS3 Recomp</h2>
+            <p>
+              Built ports that use the PS3Recomp trophy JSON format can import
+              their trophy schema and progress without an RPCS3 installation.
+            </p>
+            <ol class="steps">
+              <li>
+                Build or install the port using its project instructions, then
+                configure its launcher or project settings to locate the
+                original game data.
+              </li>
+              <li>
+                In <strong>Settings - Folders</strong>, add the built port's
+                installation folder. Add the complete installation rather than
+                only the original game-data folder.
+              </li>
+              <li>
+                Keep the original game data available for the first import.
+                Achievements extracts trophy names and icons locally from
+                <code>TROPHY.TRP</code>.
+              </li>
+              <li>
+                Use <strong>Folders - Rescan</strong> if discovery does not
+                start, or whenever the trophy schema needs to be rebuilt. The
+                imported game appears as a <strong>PS3 Recomp</strong> config.
+              </li>
+              <li>
+                Configure its preset, sound, position, scale, and duration under
+                <strong>PS3 Recomp Notification</strong> in the Notifications
+                tab.
+              </li>
+            </ol>
+            <h3>Important notes</h3>
+            <ul class="clean-list">
+              <li>
+                RPCS3 is not required. The port's launcher or project
+                configuration provides the path to the original game data.
+              </li>
+              <li>
+                Native Bronze, Silver, Gold, and Platinum grades are preserved.
+                PS3 Recomp keeps its own notification preset, sound, position,
+                and timing regardless of Trophy Mode. Platinum continues to use
+                the dedicated Platinum notification profile.
+              </li>
+              <li>
+                If the original data, launcher configuration, or trophy files
+                change after import, use <strong>Folders - Rescan</strong> to
+                rebuild the schema and refresh its local icons.
               </li>
             </ul>
           </div>

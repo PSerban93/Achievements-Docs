@@ -174,6 +174,18 @@
                 path, launcher arguments, or game-location configuration.
               </li>
               <li>
+                PS3 Recomp requires the built port installation, its launcher or
+                project configuration, and the original game data during the
+                first import. Adding only the original game-data folder is not
+                sufficient.
+              </li>
+              <li>
+                PS3 Recomp reads trophy names and icons locally from
+                <code>TROPHY.TRP</code>; RPCS3 is not required. Use
+                <strong>Folders - Rescan</strong> after changing the original
+                data location or when the schema and icons need to be rebuilt.
+              </li>
+              <li>
                 PS4 Recomp imports lists and icons from the original trophy
                 files and <code>npbind.dat</code> with the built-in public retail
                 key. Decrypted trophy data is also supported. Use
@@ -213,6 +225,48 @@
                 When switching LADXHD between normal and portable storage,
                 rescan the installed game folder so monitoring follows the
                 correct achievement file.
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="section anchor-target" id="manual-achievement-recovery">
+          <div class="section-head">
+            <h2>Manual achievement changes and recovery</h2>
+            <p>
+              See the complete workflow and supported formats in
+              <a href="customization.html#manual-achievement-state"
+                >Manual achievement changes and backups</a
+              >.
+            </p>
+          </div>
+          <div class="panel">
+            <ul class="clean-list">
+              <li>
+                If <strong>Mark as Manually Locked</strong> is unavailable, the
+                selected source is official, log-based, ambiguous, or does not
+                use one of the supported local state formats.
+              </li>
+              <li>
+                Close the game before locking achievements or restoring a
+                backup. This prevents the game from rewriting the same local
+                files while they are being edited.
+              </li>
+              <li>
+                <strong>Restore Last Achievement Backup</strong> appears only
+                when the backup matches the active config, local source, and
+                profile identity.
+              </li>
+              <li>
+                Check <code>%APPDATA%\Achievements\achievement_backups</code>
+                and the application logs when an edit or restoration fails. The
+                app attempts an automatic rollback and preserves files that were
+                changed externally during the operation.
+              </li>
+              <li>
+                A manually locked achievement can unlock again when the game's
+                existing save already satisfies its condition. This is expected
+                and does not indicate a failed lock operation.
               </li>
             </ul>
           </div>
