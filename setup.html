@@ -95,6 +95,16 @@
           </div>
           <ol class="steps">
             <li>
+              Download the Windows installer from
+              <a
+                href="https://github.com/PSerban93/Achievements/releases/latest"
+                target="_blank"
+                rel="noopener noreferrer"
+                >GitHub Releases</a
+              >, install Achievements, and open the application. Node.js and Git
+              are needed only when running the project from source.
+            </li>
+            <li>
               Open <strong>Settings</strong> and choose a preset and scale.
             </li>
             <li>
@@ -169,8 +179,18 @@ Achievements.exe --appid=239140 --platform=steam</code></pre>
           <div class="panel">
             <ul class="clean-list">
               <li>
-                On first run, startup can pause and show a folder selection
-                modal before full auto-scan begins.
+                On first run, or after the onboarding version changes, the
+                welcome dialog offers <strong>Restore from Backup</strong> and
+                <strong>Set Up as New Device</strong>.
+              </li>
+              <li>
+                Restoring opens the profile backup flow. Setting up a new device
+                continues to folder selection before the full automatic scan
+                begins.
+              </li>
+              <li>
+                In folder selection, <strong>Back</strong> returns to the welcome
+                dialog without completing onboarding.
               </li>
               <li>
                 The app searches for known achievement signals such as
@@ -216,6 +236,42 @@ Achievements.exe --appid=239140 --platform=steam</code></pre>
                 />
               </a>
             </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-head">
+            <h2>Achievements files generation</h2>
+          </div>
+          <div class="panel">
+            <p>
+              Auto-configuration follows a defined Steam lookup order depending
+              on whether a Steam Web API key is stored in Settings.
+            </p>
+            <ul class="clean-list">
+              <li>
+                With a key, the app tries the Steam Web API
+                <code>GetSchemaForGame</code> endpoint first, followed by
+                <code>GetGameAchievements</code>.
+              </li>
+              <li>
+                Without a key, it tries Schema Parse, the public Steam
+                achievement JSON, SteamCommunity, and then SteamDB.
+              </li>
+              <li>
+                SteamCommunity supplies achievement IDs, text, color and gray
+                icons, and available translations directly, without opening a
+                browser.
+              </li>
+              <li>
+                Exophase can add translations when needed. If a requested
+                translation is unavailable, the app falls back to English.
+              </li>
+              <li>
+                Sources used when available include Steam Web API, Schema Parse,
+                SteamCommunity, SteamDB, Exophase, GOG, and Epic.
+              </li>
+            </ul>
           </div>
         </section>
 
@@ -282,8 +338,10 @@ Achievements.exe --appid=239140 --platform=steam</code></pre>
                 <code>achievements.json</code> and image assets.
               </li>
               <li>
-                <code>save_path</code> – folder with local progress or save
-                data.
+                <code>save_path</code> – folder containing the local file or
+                files where unlocked achievement state is saved. This is the
+                achievement progress location, not necessarily the game's
+                normal save-game folder.
               </li>
               <li>
                 <code>process_name</code> – executable name used for process
@@ -360,6 +418,7 @@ Achievements.exe --appid=239140 --platform=steam</code></pre>
               <li>%APPDATA%\Goldberg UplayEmu Saves</li>
               <li>%APPDATA%\R1 UplayEmu Saves</li>
               <li>%APPDATA%\GSE Saves</li>
+              <li>%APPDATA%\NemirtingasEpicEmu</li>
               <li>%APPDATA%\EMPRESS</li>
               <li>%LOCALAPPDATA%\anadius\LSX emu\achievement_watcher</li>
               <li>%APPDATA%\Steam\CODEX</li>
@@ -511,31 +570,6 @@ Achievements.exe --appid=239140 --platform=steam</code></pre>
           </div>
         </section>
 
-        <section class="section">
-          <div class="section-head">
-            <h2>Steam API key behavior</h2>
-          </div>
-          <div class="panel">
-            <p>
-              Auto-configuration prefers the Steam Web API when a key is stored
-              in Settings.
-            </p>
-            <ul class="clean-list">
-              <li>
-                With a key: the app uses Steam Web API for schema and metadata
-                when possible.
-              </li>
-              <li>
-                Without a key: it falls back to SteamDB, SteamHunters, and
-                Exophase for language enrichment when available.
-              </li>
-              <li>
-                Sources used when available include Steam Web API, SteamDB,
-                SteamHunters, Exophase, GOG, and Epic.
-              </li>
-            </ul>
-          </div>
-        </section>
       </main>
     </div>
   </body>
