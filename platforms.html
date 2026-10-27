@@ -174,7 +174,8 @@
             <a class="card card-link" href="#achievement-enabler">
               <h3>Achievement Enabler</h3>
               <p>
-                One auto-detected setup flow for Steam, Ubisoft, Epic, and GOG.
+                One auto-detected setup flow for Steam, Ubisoft, EA, Epic, and
+                GOG.
               </p>
               <span class="card-cta">Jump to section</span>
             </a>
@@ -686,10 +687,11 @@ password</code></pre>
                 ZIP into a separate working folder.
               </li>
               <li>
-                For Steam and Ubisoft, rename
-                <code>dummy_account.txt.example</code> to
-                <code>dummy_account.txt</code> and enter the credentials for a
-                throwaway Steam account. GOG and Epic do not require this file.
+                For Steam and Ubisoft, create
+                <code>%SystemDrive%\steamcmd\_AchievementEnabler\dummy_account.txt</code>.
+                Put the username of a throwaway Steam account on the first line
+                and its password on the second line. EA, Epic, and GOG do not
+                require this file.
               </li>
               <li>
                 Keep a backup of the extracted release. The setup removes its
@@ -704,27 +706,118 @@ password</code></pre>
                 prompts. This is the only script that must be launched.
               </li>
             </ol>
-            <h3>Account file example</h3>
+            <p class="note">
+              Persistent Achievement Enabler settings are stored in
+              <code>%SystemDrive%\steamcmd\_AchievementEnabler</code>.
+            </p>
+            <h3>Steam account file example</h3>
             <pre><code>username
 password</code></pre>
+            <h3>Supported platforms</h3>
+            <div class="table-wrap">
+              <table class="support-table">
+                <thead>
+                  <tr>
+                    <th>Platform</th>
+                    <th>How it is detected</th>
+                    <th>Requirements and setup behavior</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Steam</td>
+                    <td>
+                      Steam ColdClient is the fallback when no other adapter
+                      marker is found.
+                    </td>
+                    <td>
+                      Uses GBE Fork and the Steam stub files supplied with the
+                      current release. A throwaway Steam account is required.
+                      The script generates the achievement data, builds
+                      <code>_ColdClient</code>, and configures the loader.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Ubisoft</td>
+                    <td>
+                      Detects Uplay R1 or R2 from its
+                      <code>upc_r*_loader.dll</code> or
+                      <code>uplay_r*_loader.dll</code> file.
+                    </td>
+                    <td>
+                      Requires the matching Uplay R1 or R2 adapter pack from
+                      the current release and a throwaway Steam account. It
+                      generates <code>achievements_schema.json</code>, backs up
+                      the existing files, and patches the matching INI.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>EA</td>
+                    <td>
+                      Detects
+                      <code>__Installer\installerdata.xml</code> in the game
+                      folder.
+                    </td>
+                    <td>
+                      Uses the anadius Origin Emulator files supplied with the
+                      current release and requires Python on
+                      <code>PATH</code>. No Steam account file is needed. The
+                      script selects the game executable and generates or
+                      updates <code>anadius.cfg</code> next to it.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Epic</td>
+                    <td>
+                      Detects <code>EOSSDK-Win64-Shipping.dll</code> or
+                      <code>EOSSDK-Win32-Shipping.dll</code>.
+                    </td>
+                    <td>
+                      No additional adapter pack or Steam account file is
+                      required. The script resolves the Epic namespace, fetches
+                      achievement data, downloads and caches Nemirtingas Epic
+                      Emulator, backs up the existing EOSSDK DLL, and creates a
+                      launch script. Some games may require a specific original
+                      EOSSDK DLL to launch correctly.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>GOG</td>
+                    <td>
+                      Detects <code>Galaxy.dll</code> or
+                      <code>Galaxy64.dll</code>. REDGalaxy DLLs are ignored.
+                    </td>
+                    <td>
+                      No additional adapter pack or Steam account file is
+                      required. The script downloads and caches the compatible
+                      UniverseLAN release, reads the GOG AppID from
+                      <code>goggame-&lt;id&gt;.info</code>, and uses a
+                      <code>Launch *.lnk</code> shortcut when available to find
+                      the executable.
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
             <h3>How the unified setup works</h3>
             <ul class="clean-list">
               <li>
-                The script detects the appropriate adapter from the files in the
-                game folder. Steam ColdClient is used as the fallback when no
-                other adapter loader is detected.
+                The script detects the appropriate adapter from platform DLLs
+                or marker files in the game folder. Steam ColdClient is used as
+                the fallback when no other adapter is detected.
               </li>
               <li>
-                Steam and Ubisoft need their additional adapter asset files. Use
-                the files and version information supplied with the current
-                Achievement Enabler release.
+                Steam, Ubisoft, and EA need additional adapter files. Use the
+                files and version information supplied with the current
+                Achievement Enabler release. Epic and GOG download and cache
+                their emulator files automatically on first use.
               </li>
               <li>
-                The setup performs crack-state checks, finds or confirms the
-                Steam AppID, retrieves achievement data, checks launch
-                arguments, generates the platform configuration, exports the
-                game to Achievements, creates a desktop shortcut, and cleans up
-                its temporary script files.
+                The selected adapter locates the executable and loader, obtains
+                the appropriate platform identifiers and achievement data,
+                writes the emulator configuration, exports the game to
+                Achievements, creates a desktop shortcut, and cleans up its
+                temporary script files.
               </li>
               <li>
                 For Ubisoft Uplay R1/R2, the matching loader and INI files must
